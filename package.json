@@ -1,0 +1,16 @@
+{
+  "name": "selfmade-instagram-posts-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Agente de criação de posts de Instagram para a Associação Selfmade (carrosséis, stories, reels em motion graphics).",
+  "type": "module",
+  "scripts": {
+    "render": "node scripts/render.mjs",
+    "video": "node scripts/render-video.mjs",
+    "contrast": "node scripts/contrast.mjs",
+    "contact-sheet": "node scripts/contact-sheet.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.56.1"
+  }
+}

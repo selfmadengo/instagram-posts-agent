@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "format": "carousel",
+    "handle": "@associacaoselfmade",
+    "pillar": "Oportunidades (mobilidade)",
+    "goal": "Partilhas (sends) + comentários com palavra-chave",
+    "status": "exemplo — validar factos e handle antes de publicar"
+  },
+  "slides": [
+    {
+      "layout": "cover",
+      "eyebrow": "Erasmus+ para jovens",
+      "title": "Viajar pela\n==Europa==\n*quase* de graça",
+      "subtitle": "Sim, existe. E não precisas de estar na universidade.",
+      "visual": { "type": "orb", "size": 820, "bottom": -360 }
+    },
+    {
+      "layout": "statement",
+      "eyebrow": "O mito",
+      "title": "Não é sorteio.\nNão é só para\n*universitários.*",
+      "body": "Os **intercâmbios de jovens** do Erasmus+ são para quem tem entre 13 e 30 anos — a estudar, a trabalhar ou entre uma coisa e outra."
+    },
+    {
+      "layout": "stat",
+      "eyebrow": "Como funciona",
+      "value": "5-21",
+      "label": "dias noutro país\ncom jovens de toda a Europa",
+      "body": "Workshops, desafios e cultura — com viagem, alojamento e alimentação apoiados pelo programa."
+    },
+    {
+      "layout": "compare",
+      "title": "O que pensas\nvs a realidade",
+      "bad": { "label": "Mito", "items": ["É caríssimo", "Tens de falar inglês perfeito", "É só para estudantes", "Precisas de cunhas"] },
+      "good": { "label": "Real", "items": ["Custos principais apoiados", "Basta comunicar — aprendes lá", "13–30 anos, qualquer situação", "Candidatas-te através de uma associação"] }
+    },
+    {
+      "layout": "steps",
+      "title": "Entra em\n4 passos",
+      "steps": [
+        { "title": "Segue a @associacaoselfmade", "text": "Publicamos cada vaga assim que abre." },
+        { "title": "Escolhe o projeto", "text": "País, tema e datas que te encaixam." },
+        { "title": "Preenche o formulário", "text": "5 minutos. Sem CV obrigatório." },
+        { "title": "Faz a mala", "text": "Nós tratamos do resto contigo." }
+      ]
+    },
+    {
+      "layout": "list",
+      "title": "O que trazes\n*de volta*",
+      "items": [
+        { "icon": "globe", "title": "Amigos em 5+ países", "text": "Uma rede que dura anos." },
+        { "icon": "message", "title": "Inglês com confiança", "text": "Falas todos os dias, sem medo." },
+        { "icon": "rocket", "title": "Ideias para empreender", "text": "Projetos que nascem num intercâmbio." },
+        { "icon": "star", "title": "Certificado Youthpass", "text": "Para o CV e para a vida.", "key": true }
+      ]
+    },
+    {
+      "layout": "statement",
+      "eyebrow": "A parte boa",
+      "title": "A próxima vaga\npode ser\n==tua.==",
+      "body": "As vagas enchem depressa. Quem sabe primeiro, vai primeiro."
+    },
+    {
+      "layout": "cta",
+      "eyebrow": "Queres ir no próximo?",
+      "title": "Comenta\n==EUROPA==",
+      "body": "Enviamos-te por mensagem as vagas abertas este mês.",
+      "button": "Ver vagas abertas",
+      "partners": ["brand/logos/partners/erasmus-plus-white.png", "brand/logos/partners/fundao-white.png"]
+    }
+  ]
+}

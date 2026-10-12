@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "format": "carousel",
+    "handle": "@associacaoselfmade",
+    "pillar": "",
+    "goal": ""
+  },
+  "slides": [
+    { "layout": "cover", "eyebrow": "", "title": "Linha 1\n==Destaque==\n*itálico* linha 3", "subtitle": "", "visual": { "type": "orb", "size": 820, "bottom": -360 } },
+    { "layout": "statement", "eyebrow": "", "title": "Segundo gancho", "body": "" },
+    { "layout": "compare", "title": "Mito vs\nrealidade", "bad": { "label": "Mito", "items": [""] }, "good": { "label": "Real", "items": [""] } },
+    { "layout": "steps", "title": "Como fazer", "steps": [{ "title": "", "text": "" }] },
+    { "layout": "list", "title": "Lista", "items": [{ "icon": "check", "title": "", "text": "" }] },
+    { "layout": "cta", "eyebrow": "", "title": "Verbo\n==objeto==", "body": "", "button": "Verbo + objeto", "partners": [] }
+  ]
+}

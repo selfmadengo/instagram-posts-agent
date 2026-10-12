@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+*.tmp
+.frames/
+
+# Fontes comerciais (licença não permite distribuição pública) — ver brand/fonts/README.md
+brand/fonts/thunder/*
+!brand/fonts/thunder/.gitkeep
+brand/fonts/euclid-square/*
+!brand/fonts/euclid-square/.gitkeep

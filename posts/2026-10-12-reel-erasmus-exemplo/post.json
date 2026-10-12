@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "format": "reel",
+    "handle": "@associacaoselfmade",
+    "pillar": "Oportunidades (mobilidade)",
+    "goal": "Watch time + partilhas",
+    "output": "reel.mp4",
+    "status": "exemplo — motion graphics sem áudio (adicionar música em tendência na app)"
+  },
+  "slides": [
+    {
+      "layout": "cover",
+      "eyebrow": "Erasmus+ para jovens",
+      "title": "Viajar pela\n==Europa==\n*quase* de graça?",
+      "visual": { "type": "orb", "size": 900, "bottom": -260 },
+      "duration": 3
+    },
+    {
+      "layout": "stat",
+      "theme": "light",
+      "eyebrow": "Intercâmbios de jovens",
+      "value": "13-30",
+      "label": "anos. A estudar,\na trabalhar ou não.",
+      "duration": 3.2
+    },
+    {
+      "layout": "compare",
+      "theme": "surface",
+      "title": "Mito vs\nrealidade",
+      "bad": { "label": "Mito", "items": ["É caríssimo", "Só universitários"] },
+      "good": { "label": "Real", "items": ["Custos apoiados", "13–30 anos"] },
+      "duration": 3.5
+    },
+    {
+      "layout": "steps",
+      "theme": "light",
+      "title": "Como entrar",
+      "steps": [
+        { "title": "Segue a página" },
+        { "title": "Escolhe o projeto" },
+        { "title": "Candidata-te em 5 min" }
+      ],
+      "duration": 3.5
+    },
+    {
+      "layout": "cta",
+      "eyebrow": "Queres ir no próximo?",
+      "title": "Comenta\n==EUROPA==",
+      "body": "Enviamos-te as vagas abertas por mensagem.",
+      "button": "Ver vagas abertas",
+      "duration": 4
+    }
+  ]
+}
