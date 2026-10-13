@@ -41,8 +41,9 @@ Cofinanciado pela União Europeia, através do programa Erasmus+ (DiscoverEU Aç
 ## Alt text
 Carrossel com o tema Pokémon GO, sobre o projeto European Youth Capitals for Democracy (DiscoverEU Ação Inclusiva) da Associação Selfmade.
 - Capa: título em letras amarelas com contorno azul sobre um céu estrelado, um globo terrestre e um comboio, e o texto "Tens 18 anos e és da região do Fundão? Apanha a Europa de comboio este verão".
-- Slides seguintes: a missão (20 jovens, 4 viagens de comboio, 5 por grupo, 10 dias), os 3 objetivos e o perfil de participante (18 anos, Fundão ou região de Castelo Branco).
-- Depois: o mapa da rota base (Bélgica, Alemanha, Polónia, Áustria, Hungria), o que está garantido, o que é o DiscoverEU e os 3 passos para participar.
+- Capa com uma Great Ball azul e amarela à frente da Terra.
+- Slides seguintes: a missão (20 jovens, 4 viagens de comboio, 5 por grupo, 10 dias), os 3 objetivos como cartões de pesquisa do Pokémon GO e o perfil de participante (18 anos, Fundão ou região de Castelo Branco).
+- Depois: o mapa real da Europa com a rota base por ordem (Bélgica, Alemanha, Áustria, Polónia, Hungria) e um comboio a percorrê-la, o que está garantido, o que é o DiscoverEU e os 3 passos para participar.
 - Último slide: apelo à partilha.
 
 ## 1.º comentário (fixar)
@@ -51,7 +52,7 @@ Com quem irias nesta viagem? Marca essa pessoa 👇
 ## Ficheiros para publicar (carrossel misto, 9 slides 3:4)
 1. `export/slide-01.mp4`: capa animada (globo a rodar e comboio, 5 s)
 2–4. `export/slide-02.png` … `slide-04.png`
-5. `export/slide-05.mp4`: mapa animado (a rota desenha-se e os pins aparecem, 5 s)
+5. `export/slide-05.mp4`: mapa real animado, o comboio vai de país em país pela ordem Bélgica → Alemanha → Áustria → Polónia → Hungria (7,5 s)
 6–9. `export/slide-06.png` … `slide-09.png`
 
 ## Factos (fontes)

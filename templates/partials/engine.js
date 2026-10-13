@@ -113,6 +113,8 @@
   // faixa de logótipos (parceiros/financiadores) sempre em contraste
   const pkLogos = (list, eu) => list?.length ? `<div class="pk-logos reveal" style="--i:6">${list.map((l) => typeof l === "string"
     ? `<img src="${asset(l)}" alt="">` : `<span class="pk-logo-item">${l.src ? `<img src="${asset(l.src)}" alt="" style="${l.h ? `height:${l.h}px;` : ""}${l.invert ? "filter:brightness(0) invert(1)" : ""}">` : ""}${l.text ? `<em>${esc(l.text)}</em>` : ""}</span>`).join("")}</div>` : "";
+  // ícone Poké Ball (CSS) — cores do projeto
+  const pball = () => `<span class="pball"><i></i></span>`;
   // céu estrelado determinístico (mesmo resultado em todos os renders)
   const stars = () => { let seed = 7 + IDX * 13; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
     const sh = Array.from({ length: 170 }, () => `${Math.round(rnd() * W)}px ${Math.round(rnd() * H)}px 0 ${rnd() < .12 ? 1.4 : 0}px rgba(255,255,255,${(.25 + rnd() * .7).toFixed(2)})`).join(",");
@@ -277,7 +279,7 @@
       break;
     case "pk-quest":
       body = `${kTop()}<div class="pk-body">
-        ${s.kicker ? `<div ${R("pk-kicker", 0)}>${icon("zap")} ${esc(s.kicker)}</div>` : ""}
+        ${s.kicker ? `<div ${R("pk-kicker", 0)}>${pball()} ${esc(s.kicker)}</div>` : ""}
         <h2 ${R("pk-title", 1)}>${lines(s.title)}</h2>
         ${s.text ? `<p ${R("pk-text", 2)}>${md(s.text)}</p>` : ""}
         <div ${R("pk-stats", 3)}>${(s.stats || []).map((t) => `<div class="pk-stat"><b>${md(t.value)}</b><span>${md(t.label)}</span></div>`).join("")}</div>
@@ -285,20 +287,22 @@
         </div>${kFooter()}`;
       break;
     case "pk-missions":
+      // cartões de "Pesquisa de Campo" (Field Research) do Pokémon GO
       body = `${kTop()}<div class="pk-body">
-        ${s.kicker ? `<div ${R("pk-kicker", 0)}>${icon("zap")} ${esc(s.kicker)}</div>` : ""}
+        ${s.kicker ? `<div ${R("pk-kicker", 0)}>${pball()} ${esc(s.kicker)}</div>` : ""}
         <h2 ${R("pk-title", 1)}>${lines(s.title)}</h2>
         <div class="pk-missions">${(s.items || []).map((m, i) => `
           <div ${R("pk-mission", i + 2)}>
-            <div class="pk-mnum">${i + 1}</div>
             <div class="pk-mbody"><p>${md(m.text)}</p>
-              <div class="pk-xp"><div class="pk-xpbar"><i style="width:${m.xp ?? 70}%"></i></div><span>+${esc(m.points ?? 100)} XP</span></div></div>
+              <div class="pk-xp"><div class="pk-xpbar"><i style="width:${m.xp ?? 0}%"></i></div><span>${esc(m.progress ?? "0/1")}</span></div></div>
+            <div class="pk-reward">${s.reward ? `<img src="${asset(s.reward)}" alt="">` : icon("star")}<b>×${esc(m.points ?? 1)}</b></div>
           </div>`).join("")}</div>
+        ${s.note ? `<p ${R("pk-note", 6)}>${md(s.note)}</p>` : ""}
         </div>${kFooter()}`;
       break;
     case "pk-trainer":
       body = `${kTop()}<div class="pk-body">
-        ${s.kicker ? `<div ${R("pk-kicker", 0)}>${icon("zap")} ${esc(s.kicker)}</div>` : ""}
+        ${s.kicker ? `<div ${R("pk-kicker", 0)}>${pball()} ${esc(s.kicker)}</div>` : ""}
         <h2 ${R("pk-title", 1)}>${lines(s.title)}</h2>
         <div ${R("pk-card pk-trainer", 2)}>
           <div class="pk-trainer-head"><div class="pk-avatar">${icon("user")}</div><div><div class="pk-tname">${esc(s.cardTitle || "Treinador(a)")}</div><div class="pk-tlevel">${md(s.cardSub || "")}</div></div></div>
@@ -308,36 +312,66 @@
         </div>${kFooter()}`;
       break;
     case "pk-map": {
-      const st = s.stops || [];
-      const pts = st.map((p) => [p.x, p.y]);
-      let d = pts.length ? `M${pts[0][0]},${pts[0][1]}` : "";
-      for (let k = 1; k < pts.length; k++) { const [x0, y0] = pts[k - 1], [x1, y1] = pts[k]; const cx = (x0 + x1) / 2; d += ` C${cx},${y0} ${cx},${y1} ${x1},${y1}`; }
+      // mapa real (scripts/make-map.mjs) + rota curva + comboio que percorre as paragens por ordem
+      const st = s.stops || [], MW = 936, MH = s.mapH || 700;
+      const segs = [];
+      for (let k = 1; k < st.length; k++) {
+        const a = st[k - 1], b = st[k], dx = b.x - a.x, dy = b.y - a.y, bend = (k % 2 ? 1 : -1) * 0.18;
+        segs.push(`M${a.x},${a.y} Q${(a.x + b.x) / 2 - dy * bend},${(a.y + b.y) / 2 + dx * bend} ${b.x},${b.y}`);
+      }
       const flag = (f) => { const [dir, cs] = f.split(":"); const c = cs.split(","); const n = c.length;
-        const stops = c.map((col, k) => `${col} ${(k / n) * 100}% ${((k + 1) / n) * 100}%`).join(","); return `linear-gradient(${dir === "v" ? "90deg" : "180deg"},${stops})`; };
+        return `linear-gradient(${dir === "v" ? "90deg" : "180deg"},${c.map((col, k) => `${col} ${(k / n) * 100}% ${((k + 1) / n) * 100}%`).join(",")})`; };
       body = `${kTop()}<div class="pk-body">
-        ${s.kicker ? `<div ${R("pk-kicker", 0)}>${icon("zap")} ${esc(s.kicker)}</div>` : ""}
+        ${s.kicker ? `<div ${R("pk-kicker", 0)}>${pball()} ${esc(s.kicker)}</div>` : ""}
         <h2 ${R("pk-title", 1)}>${lines(s.title)}</h2>
         ${s.text ? `<p ${R("pk-text", 2)}>${md(s.text)}</p>` : ""}
-        <div class="pk-map" style="height:${s.mapH || 640}px">
-          <svg class="pk-route" viewBox="0 0 936 ${s.mapH || 640}" preserveAspectRatio="none"><path class="pk-route-glow" d="${d}"/><path class="pk-route-line" d="${d}"/></svg>
-          ${st.map((p, k) => `<div class="pk-pin pop" style="left:${p.x}px;top:${p.y}px;--d:${300 + k * 180}ms"><div class="pk-pin-head"><i style="background:${flag(p.flag)}"></i></div><div class="pk-pin-label">${esc(p.name)}</div></div>`).join("")}
+        <div class="pk-map real" style="height:${MH}px">
+          ${s.map ? `<img class="pk-map-img" src="${asset(s.map)}" alt="">` : ""}
+          <svg class="pk-route" viewBox="0 0 ${MW} ${MH}">${segs.map((d, k) => `<path class="pk-route-glow" d="${d}"/><path class="pk-route-line seg" data-k="${k}" d="${d}"/>`).join("")}</svg>
+          ${st.map((p, k) => `<div class="pk-pin" data-k="${k}" style="left:${p.x}px;top:${p.y}px"><div class="pk-pin-num">${k + 1}</div><div class="pk-pin-head"><i style="background:${flag(p.flag)}"></i></div><div class="pk-pin-label ${p.label || ""}">${esc(p.name)}</div></div>`).join("")}
+          <div class="pk-train">${icon("train")}</div>
         </div>
         ${s.note ? `<p ${R("pk-note", 3)}>${md(s.note)}</p>` : ""}
         </div>${kFooter()}`;
+      // linha do tempo: o comboio parte da paragem 1 e para em cada uma, por ordem
+      const T0 = 600, SEG = s.segMs || 1100, STOP = 250;
+      window.__mapAt = (t) => {
+        const paths = [...document.querySelectorAll(".pk-route-line.seg")];
+        const train = document.querySelector(".pk-train"); if (!train || !paths.length) return;
+        let pos = null;
+        paths.forEach((pth, k) => {
+          const L = pth.getTotalLength(), start = T0 + k * (SEG + STOP);
+          const f = Math.max(0, Math.min(1, (t - start) / SEG)), e = f < .5 ? 2 * f * f : 1 - Math.pow(-2 * f + 2, 2) / 2;
+          pth.style.strokeDasharray = `${L}`; pth.style.strokeDashoffset = `${L * (1 - e)}`;
+          if (t >= start && (f < 1 || k === paths.length - 1)) pos = pth.getPointAtLength(L * e);
+          if (f >= 1 && k === paths.length - 1) pos = pth.getPointAtLength(L);
+        });
+        if (!pos) pos = { x: st[0].x, y: st[0].y };
+        train.style.left = pos.x + "px"; train.style.top = pos.y + "px";
+        document.querySelectorAll(".pk-pin").forEach((pin) => {
+          const k = +pin.dataset.k, arrive = k === 0 ? T0 - 300 : T0 + (k - 1) * (SEG + STOP) + SEG;
+          const g = Math.max(0, Math.min(1, (t - arrive) / 350));
+          pin.style.opacity = g; pin.style.transform = `scale(${0.6 + 0.4 * (1 - Math.pow(1 - g, 3)) + (g > 0 && g < 1 ? Math.sin(g * Math.PI) * 0.12 : 0)})`;
+        });
+      };
+      window.__setTime = window.__mapAt;
+      // render estático: rota completa e comboio a caminho da última paragem
+      window.__mapStatic = () => { window.__mapAt(T0 + (s.trainSeg ?? st.length - 2) * (SEG + STOP) + SEG * (s.trainAt ?? 0.55));
+        document.querySelectorAll(".pk-pin").forEach((pin) => { pin.style.opacity = 1; pin.style.transform = "none"; }); };
       break;
     }
     case "pk-items":
       body = `${kTop()}<div class="pk-body">
-        ${s.kicker ? `<div ${R("pk-kicker", 0)}>${icon("zap")} ${esc(s.kicker)}</div>` : ""}
+        ${s.kicker ? `<div ${R("pk-kicker", 0)}>${pball()} ${esc(s.kicker)}</div>` : ""}
         <h2 ${R("pk-title", 1)}>${lines(s.title)}</h2>
         ${s.text ? `<p ${R("pk-text", 2)}>${md(s.text)}</p>` : ""}
-        <div class="pk-grid">${(s.items || []).map((it, i) => `
-          <div ${R("pk-item", i + 3)}><div class="pk-item-ico">${icon(it.icon)}</div><div><h3>${md(it.title)}</h3>${it.text ? `<p>${md(it.text)}</p>` : ""}</div></div>`).join("")}</div>
+        ${s.bag ? `<div ${R("pk-baghead", 2)}><span>${esc(s.bag)}</span><b>${(s.items || []).length}/${(s.items || []).length}</b></div>` : ""}<div class="pk-grid">${(s.items || []).map((it, i) => `
+          <div ${R("pk-item", i + 3)}><div class="pk-item-ico">${icon(it.icon)}</div><div class="pk-item-txt"><h3>${md(it.title)}</h3>${it.text ? `<p>${md(it.text)}</p>` : ""}</div><b class="pk-count">×${esc(it.count ?? 1)}</b></div>`).join("")}</div>
         </div>${kFooter()}`;
       break;
     case "pk-info":
       body = `${kTop()}<div class="pk-body">
-        ${s.kicker ? `<div ${R("pk-kicker", 0)}>${icon("zap")} ${esc(s.kicker)}</div>` : ""}
+        ${s.kicker ? `<div ${R("pk-kicker", 0)}>${pball()} ${esc(s.kicker)}</div>` : ""}
         <h2 ${R("pk-title", 1)}>${lines(s.title)}</h2>
         ${s.sub ? `<div ${R("pk-sub-brand pk-left", 2)}>${esc(s.sub)}</div>` : ""}
         ${s.text ? `<p ${R("pk-lead", 3)}>${md(s.text)}</p>` : ""}
@@ -346,7 +380,7 @@
       break;
     case "pk-steps":
       body = `${kTop()}<div class="pk-body">
-        ${s.kicker ? `<div ${R("pk-kicker", 0)}>${icon("zap")} ${esc(s.kicker)}</div>` : ""}
+        ${s.kicker ? `<div ${R("pk-kicker", 0)}>${pball()} ${esc(s.kicker)}</div>` : ""}
         <h2 ${R("pk-title", 1)}>${lines(s.title)}</h2>
         ${s.text ? `<p ${R("pk-text", 2)}>${md(s.text)}</p>` : ""}
         <div class="pk-steps">${(s.steps || []).map((st, i) => `
@@ -382,6 +416,7 @@
       let size = parseFloat(getComputedStyle(el).fontSize);
       while (el.scrollWidth > max + 1 && size > 60) { size -= 4; el.style.fontSize = size + "px"; }
     });
+    if (!window.__ANIM__ && window.__mapStatic) window.__mapStatic();
     document.body.dataset.ready = "1";
   });
 })();

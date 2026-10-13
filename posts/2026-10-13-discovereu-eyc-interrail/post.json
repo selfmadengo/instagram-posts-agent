@@ -38,12 +38,13 @@
       },
       "extras": [
         {
-          "src": "assets/3d/eyc-comboio-azul.png",
-          "width": 350,
-          "left": 650,
-          "top": 950,
+          "src": "assets/3d/eyc-greatball.png",
+          "width": 400,
+          "left": 600,
+          "top": 905,
           "blur": 0,
-          "z": 6,
+          "z": 5,
+          "rotate": -8,
           "float": true
         }
       ],
@@ -102,20 +103,24 @@
       "items": [
         {
           "text": "Conectar-te aos valores democráticos e ao legado da Europa, visitando cidades históricas",
-          "xp": 85,
-          "points": 300
+          "xp": 8,
+          "points": 3,
+          "progress": "0/1"
         },
         {
           "text": "Aumentar a participação juvenil e a cidadania ativa",
-          "xp": 65,
-          "points": 200
+          "xp": 8,
+          "points": 3,
+          "progress": "0/1"
         },
         {
           "text": "Desenvolver competências de viagem, autonomia e pensamento crítico",
-          "xp": 75,
-          "points": 250
+          "xp": 8,
+          "points": 3,
+          "progress": "0/1"
         }
-      ]
+      ],
+      "reward": "assets/3d/eyc-greatball.png"
     },
     {
       "layout": "pk-trainer",
@@ -153,42 +158,50 @@
       "theme": "dark",
       "kicker": "Rota da viagem",
       "title": "10 dias de\nInterrail",
-      "text": "Vamos levar os jovens do Fundão de comboio por várias cidades europeias.",
-      "mapH": 560,
+      "text": "10 dias de comboio, por esta ordem:",
+      "mapH": 640,
       "stops": [
         {
           "name": "Bélgica",
-          "x": 120,
-          "y": 250,
-          "flag": "v:#1a1a1a,#fdda24,#ef3340"
+          "x": 202,
+          "y": 320,
+          "flag": "v:#1a1a1a,#fdda24,#ef3340",
+          "label": ""
         },
         {
           "name": "Alemanha",
-          "x": 340,
-          "y": 170,
-          "flag": "h:#1a1a1a,#dd0000,#ffce00"
-        },
-        {
-          "name": "Polónia",
-          "x": 640,
-          "y": 160,
-          "flag": "h:#ffffff,#dc143c"
+          "x": 480,
+          "y": 254,
+          "flag": "h:#1a1a1a,#dd0000,#ffce00",
+          "label": ""
         },
         {
           "name": "Áustria",
-          "x": 450,
-          "y": 420,
-          "flag": "h:#ed2939,#ffffff,#ed2939"
+          "x": 488,
+          "y": 502,
+          "flag": "h:#ed2939,#ffffff,#ed2939",
+          "label": ""
+        },
+        {
+          "name": "Polónia",
+          "x": 707,
+          "y": 255,
+          "flag": "h:#ffffff,#dc143c",
+          "label": ""
         },
         {
           "name": "Hungria",
-          "x": 790,
-          "y": 430,
-          "flag": "h:#ce2939,#ffffff,#477050"
+          "x": 667,
+          "y": 492,
+          "flag": "h:#ce2939,#ffffff,#477050",
+          "label": "right"
         }
       ],
       "note": "*Itinerário base. O percurso, o tempo em cada cidade e o que visitar são decididos **em conjunto com cada grupo**.",
-      "duration": 5
+      "duration": 7.5,
+      "map": "assets/maps/eyc-europe.svg",
+      "trainAt": 0.3,
+      "trainSeg": 2
     },
     {
       "layout": "pk-items",
@@ -226,7 +239,8 @@
           "title": "Assistência e suporte",
           "text": "durante toda a viagem"
         }
-      ]
+      ],
+      "bag": "A tua mochila"
     },
     {
       "layout": "pk-info",

@@ -1,0 +1,45 @@
+{
+ "out": "assets/maps/eyc-europe.svg",
+ "width": 936,
+ "height": 640,
+ "bbox": [
+  -0.5,
+  44.6,
+  26.5,
+  56.2
+ ],
+ "highlight": [
+  "056",
+  "276",
+  "040",
+  "616",
+  "348"
+ ],
+ "stops": [
+  {
+   "name": "Bélgica",
+   "lon": 4.35,
+   "lat": 50.85
+  },
+  {
+   "name": "Alemanha",
+   "lon": 13.4,
+   "lat": 52.52
+  },
+  {
+   "name": "Áustria",
+   "lon": 13.6,
+   "lat": 47.45
+  },
+  {
+   "name": "Polónia",
+   "lon": 21.01,
+   "lat": 52.23
+  },
+  {
+   "name": "Hungria",
+   "lon": 19.04,
+   "lat": 47.5
+  }
+ ]
+}

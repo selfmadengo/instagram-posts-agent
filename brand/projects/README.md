@@ -20,3 +20,4 @@ Fonte: post original instagram.com/p/DWUG-LmDCCz e infopack (Canva DAG5pHQ54I4).
 - Acento: **azul** `#2a5cb0` (com degradê `#3d7dca` → `#1d4a94`) e **amarelo** `#ffcb05` (destaques sobre escuro). Azul profundo `#12306b`.
 - Títulos: **Pokemon Solid** amarela com contorno azul (`.pk-title`). Texto: **Montserrat** (400–800).
 - Tema: Pokémon GO (missões, XP, cartão de treinador, mapa com pins, inventário).
+- Elementos do projeto: **Great Ball** 3D azul + amarela (`node scripts/render-3d.mjs ball assets/3d/eyc-greatball.png --pitch 20 --yaw -18 --roll -10 --rim "#3d7dca"`), Poké Ball em CSS nos rótulos, cartões de "Pesquisa de Campo", mochila com contadores ×1 e mapa real (`node scripts/make-map.mjs assets/maps/eyc-europe.json`).

@@ -51,8 +51,7 @@
 /* pílula e pontos do rodapé: amarelo do projeto */
 .brand-eyc .k-pill-ico { background: var(--c-pk-yellow); color: var(--c-pk-blue-deep); }
 .brand-eyc.theme-light .k-dots i.on { background: var(--c-pk-blue); }
-/* kicker: azul com raio amarelo */
-.brand-eyc .pk-kicker { background: var(--c-pk-blue); }
+
 /* destaques de texto em azul (claro) / branco (escuro) */
 .brand-eyc.theme-light .pk-text strong { color: var(--c-pk-blue); }
 .brand-eyc .pk-stat b { color: var(--c-pk-blue); }

@@ -183,9 +183,36 @@ async function makeText() {
   return new THREE.Mesh(geo, MATS[S.material || "red"]());
 }
 
+// ---------- GREAT BALL estilo Pokémon (cores do projeto: azul + amarelo) ----------
+function makeBall() {
+  const R = 1.4, band = 0.075, C = (h) => new THREE.Color(h);
+  const top = S.top || "#1d4fae", patch = S.patch || "#ffc400";
+  const cv = document.createElement("canvas"); cv.width = 2048; cv.height = 1024; const x = cv.getContext("2d");
+  x.fillStyle = top; x.fillRect(0, 0, 2048, 1024);
+  // "asas" laterais da Great Ball (u=0 e u=0.5 → lados ±x), do equador quase até ao topo
+  x.fillStyle = patch;
+  const wing = (cx) => { x.beginPath(); x.roundRect(cx - 250, 300, 500, 760, [220, 220, 0, 0]); x.fill(); };
+  wing(0); wing(2048); wing(1024);
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+  const glossy = (o) => new THREE.MeshPhysicalMaterial(Object.assign({ roughness: 0.38, metalness: 0, clearcoat: 0.8, clearcoatRoughness: 0.12, envMapIntensity: 0.35 }, o));
+  renderer.toneMappingExposure = 0.92;
+  const g = new THREE.Group();
+  g.add(new THREE.Mesh(new THREE.SphereGeometry(R, 160, 80, 0, Math.PI * 2, 0, Math.PI / 2 - band), glossy({ map: t })));
+  g.add(new THREE.Mesh(new THREE.SphereGeometry(R, 160, 80, 0, Math.PI * 2, Math.PI / 2 + band, Math.PI / 2 - band), glossy({ color: C("#f4f6f8") })));
+  g.add(new THREE.Mesh(new THREE.SphereGeometry(R * 0.985, 160, 40, 0, Math.PI * 2, Math.PI / 2 - band - 0.01, band * 2 + 0.02), glossy({ color: C("#0d1114"), roughness: 0.5 })));
+  // botão frontal (+z): anel preto, aro branco, botão branco com anel interior
+  const disc = (r, d, col, z, rough = 0.35) => { const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, d, 96), glossy({ color: C(col), roughness: rough })); m.rotation.x = Math.PI / 2; m.position.z = z; g.add(m); return m; };
+  disc(0.42, 0.22, "#0d1114", R - 0.07, 0.5);
+  disc(0.32, 0.26, "#f4f6f8", R - 0.04);
+  disc(0.22, 0.30, "#e9edf0", R - 0.03, 0.2);
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.22, 0.018, 16, 96), glossy({ color: C("#9aa4ab") })); ring.position.z = R + 0.12; g.add(ring);
+  return g;
+}
+
 // ---------- montagem ----------
 const root = new THREE.Group(); scene.add(root);
 if (S.object === "globe") root.add(await makeGlobe(1.55));
+if (S.object === "ball") root.add(makeBall());
 if (S.object === "plane") { const p = makePlane(0.95); p.rotation.set(deg(-12), deg(-125), deg(-22)); root.add(p); }
 if (S.object === "x") { const x = makeX(); x.rotation.set(deg(-18), deg(28), deg(6)); root.add(x); }
 if (S.object === "check") { const c = makeCheck(); c.rotation.set(deg(-14), deg(-24), deg(-4)); root.add(c); }
