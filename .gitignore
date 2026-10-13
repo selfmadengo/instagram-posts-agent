@@ -11,3 +11,6 @@ brand/fonts/euclid-square/*
 
 # sequências 3D animadas (regeneráveis com scripts/render-3d.mjs --spin)
 assets/3d/*-spin/
+
+# capturas de referência de terceiros (só análise interna, não publicar)
+docs/research/inspiracao/

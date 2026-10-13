@@ -15,6 +15,7 @@ brand/fonts/thunder/Thunder-MediumLC.woff2
 brand/fonts/thunder/Thunder-SemiBoldLC.woff2
 brand/fonts/thunder/Thunder-BoldLC.woff2
 brand/fonts/thunder/Thunder-BlackLC.woff2          (Fonts/Web-TT/ no zip THUNDER)
+brand/fonts/euclid-square/EuclidSquare-Light.woff2
 brand/fonts/euclid-square/EuclidSquare-Regular.woff2
 brand/fonts/euclid-square/EuclidSquare-Italic.woff2
 brand/fonts/euclid-square/EuclidSquare-Medium.woff2

@@ -83,9 +83,25 @@
       ${swipe}</div>`;
   };
 
+  // estilo KingUp: número discreto em cima, pílula "Arrasta" + pontos de paginação em baixo
+  const kTop = () => `
+    <div class="topbar k-topbar">
+      <div class="brandmark"><img src="${logoIcon}" alt=""><span class="handle">${esc(handle)}</span></div>
+      <div class="k-num">${pad(IDX + 1)}</div>
+    </div>`;
+  const kFooter = () => {
+    const last = IDX === total - 1;
+    const dots = Array.from({ length: total }, (_, k) => `<i class="${k === IDX ? "on" : ""}"></i>`).join("");
+    return `<div class="k-footer">
+      <div class="k-pill"><span class="k-pill-ico">${icon(last ? "message" : "arrow")}</span>${esc(last ? "Lê a legenda" : (meta.swipeLabel || "Arrasta para o lado"))}</div>
+      <div class="k-dots">${dots}</div></div>`;
+  };
+  // objetos secundários desfocados nas margens (profundidade de campo, KingUp)
+  const extras = (list) => (list || []).map((e) => `<div class="k-extra ${e.float ? "float" : ""}" style="z-index:${e.z ?? 2};width:${e.width}px;left:${e.left}px;top:${e.top}px;filter:blur(${e.blur ?? 10}px) drop-shadow(0 30px 40px rgba(0,0,0,.35));opacity:${e.opacity ?? 1};transform:rotate(${e.rotate || 0}deg)"><img src="${asset(e.src)}" alt=""></div>`).join("");
+
   const visual = (v) => {
     if (!v) return "";
-    const pos = `width:${v.width || 860}px;bottom:${v.bottom ?? 120}px;${v.left != null ? `left:${v.left}px;transform:rotate(${v.rotate || 0}deg);` : `transform:translateX(-50%) rotate(${v.rotate || 0}deg);`}`;
+    const pos = `width:${v.width || 860}px;${v.top != null ? `top:${v.top}px;` : `bottom:${v.bottom ?? 120}px;`}${v.left != null ? `left:${v.left}px;transform:rotate(${v.rotate || 0}deg);` : `transform:translateX(-50%) rotate(${v.rotate || 0}deg);`}`;
     const cls = `hero-visual ${v.front ? "front" : ""} ${v.float ? "float" : ""} ${v.rise ? "pop-in" : ""}`;
     const fade = v.fade ? '<div class="hero-fade"></div>' : "";
     if (v.type === "image") return `<div class="${cls}" style="${pos}"><img src="${asset(v.src)}" alt=""></div>${fade}`;
@@ -183,20 +199,66 @@
         ${s.partners?.length ? `<div ${R("partners", 5)}>${s.partners.map((p) => `<img src="${asset(p)}" alt="">`).join("")}${s.partnersNote ? `<span class="eu-note">${esc(s.partnersNote)}</span>` : ""}</div>` : ""}
         </div>${footer()}`;
       break;
+    /* ---------- Estilo KingUp (acabamento) + @marketingharry (estrutura) ---------- */
+    case "k-hook":
+      body = `<div class="k-topline reveal" style="--i:0"><img src="${logoIcon}" alt="">${esc(s.topline || "Mobilidade Internacional")} <span class="sep">|</span> ${esc(handle)}</div>
+        <div class="k-hook-title">
+          ${s.pre ? `<div ${R("k-pre", 1)}>${md(s.pre)}</div>` : ""}
+          <h1 ${R("display k-main", 2)} style="${s.size ? `font-size:${s.size}px` : ""}">${lines(s.title)}</h1>
+          ${s.post ? `<div ${R("k-post", 3)}>${md(s.post)}</div>` : ""}
+        </div>`;
+      break;
+    case "k-promise":
+      body = `${kTop()}<div class="content">
+        <p ${R("k-promise-text", 1)}>${lines(s.text)}</p>
+        ${s.note ? `<div ${R("k-note", 2)}>${md(s.note)} ${icon("arrow")}</div>` : ""}
+        </div>${kFooter()}`;
+      break;
+    case "k-lesson":
+      body = `${kTop()}<div class="k-lesson">
+        <div ${R("k-myth", 0)}><span class="k-x">${icon("x")}</span><span class="k-myth-label">${esc(s.mythLabel || "Mito")}</span><span class="k-myth-text">${md(s.myth)}</span></div>
+        <h2 ${R("display k-title", 1)}>${lines(s.title)}</h2>
+        <div ${R("k-proof", 2)}>
+          <div class="k-proof-head"><span class="k-check">${icon("check")}</span>${esc(s.proofLabel || "Realidade")}</div>
+          ${(s.rows || []).map((r) => `<div class="k-row"><span>${md(r[0] ?? r)}</span>${r[1] ? `<b>${md(r[1])}</b>` : ""}</div>`).join("")}
+        </div>
+        ${s.takeaway ? `<p ${R("k-takeaway", 3)}>${md(s.takeaway)}</p>` : ""}
+        </div>${kFooter()}`;
+      break;
+    case "k-poster":
+      body = `${kTop()}<div class="k-poster">
+        ${s.eyebrow ? `<div ${R("k-chip", 0)}>${esc(s.eyebrow)}</div>` : ""}
+        <h2 ${R("k-thin", 1)} style="${s.size ? `font-size:${s.size}px` : ""}">${lines(s.title)}</h2>
+        ${s.body ? `<p ${R("k-sub", 2)}>${md(s.body)}</p>` : ""}
+        </div>${kFooter()}`;
+      break;
+    case "k-recap":
+      body = `${kTop()}<div class="k-recap">
+        <h2 ${R("display k-recap-title", 0)}>${lines(s.title)}</h2>
+        <div ${R("k-table", 1)}>${(s.rows || []).map((r) => `
+          <div class="k-trow"><span class="k-tmyth">${icon("x")}${md(r[0])}</span><span class="k-ttruth">${icon("check")}${md(r[1])}</span></div>`).join("")}</div>
+        <div class="k-sticker pop" style="--d:450ms">
+          <div class="k-sticker-title">${lines(s.cta)}</div>
+          ${s.ctaSub ? `<div class="k-sticker-sub">${md(s.ctaSub)}</div>` : ""}
+        </div>
+        ${s.share ? `<div ${R("k-share", 5)}>${icon("send")} ${esc(s.share)}</div>` : ""}
+        ${s.partners?.length ? `<div ${R("k-partners", 6)}>${s.partners.map((p) => `<img src="${asset(p)}" alt="">`).join("")}${s.partnersNote ? `<span>${esc(s.partnersNote)}</span>` : ""}<img class="k-self" src="${asset("brand/logos/selfmade-logo-white.png")}" alt=""></div>` : ""}
+        </div>`;
+      break;
     default:
       body = `${topbar()}<div class="content"><h2 class="display">${lines(s.title || "Layout desconhecido")}</h2></div>${footer()}`;
   }
 
   const bg = s.background ? `<div class="bg-image"><img src="${asset(s.background)}" alt=""></div>` : "";
   document.getElementById("stage").innerHTML = `
-    <section class="slide theme-${theme} l-${s.layout || "statement"} ${s.align === "center" ? "center" : ""} ${s.valign === "top" ? "top" : ""} ${s.visual ? "has-visual" : ""} ${isVertical ? "vertical" : ""} ${window.__ANIM__ ? "anim" : ""}">
+    <section class="slide theme-${theme} l-${s.layout || "statement"} ${s.align === "center" ? "center" : ""} ${s.valign === "top" ? "top" : ""} ${s.visual ? "has-visual" : ""} ${isVertical ? "vertical" : ""} ${String(s.layout).startsWith("k-") ? "kit-k" : ""} ${window.__ANIM__ ? "anim" : ""}">
       ${bg}<div class="motif-orbit"></div>
-      ${visual(s.visual)}
+      ${extras(s.extras)}${visual(s.visual)}
       <div class="frame">${body}</div>
     </section>`;
   // auto-ajuste: reduz o título até cada linha caber na largura da grelha (nunca sair das margens)
   document.fonts.ready.then(() => {
-    document.querySelectorAll(".display, .big").forEach((el) => {
+    document.querySelectorAll(".display, .big, .k-thin").forEach((el) => {
       const max = el.parentElement.clientWidth || (W - 144);
       let size = parseFloat(getComputedStyle(el).fontSize);
       while (el.scrollWidth > max + 1 && size > 60) { size -= 4; el.style.fontSize = size + "px"; }

@@ -6,7 +6,8 @@
 @font-face { font-family: "Thunder"; src: url("fonts/thunder/Thunder-BoldLC.woff2") format("woff2"); font-weight: 700; font-display: block; }
 @font-face { font-family: "Thunder"; src: url("fonts/thunder/Thunder-BlackLC.woff2") format("woff2"); font-weight: 900; font-display: block; }
 
-/* EUCLID SQUARE — Parágrafos */
+/* EUCLID SQUARE — Parágrafos (Light 300: títulos finos estilo KingUp) */
+@font-face { font-family: "Euclid Square"; src: url("fonts/euclid-square/EuclidSquare-Light.woff2") format("woff2"); font-weight: 300; font-display: block; }
 @font-face { font-family: "Euclid Square"; src: url("fonts/euclid-square/EuclidSquare-Regular.woff2") format("woff2"); font-weight: 400; font-display: block; }
 @font-face { font-family: "Euclid Square"; src: url("fonts/euclid-square/EuclidSquare-Italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: block; }
 @font-face { font-family: "Euclid Square"; src: url("fonts/euclid-square/EuclidSquare-Medium.woff2") format("woff2"); font-weight: 500; font-display: block; }

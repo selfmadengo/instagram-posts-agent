@@ -316,3 +316,140 @@ strong { font-weight: 600; }
 @keyframes float { 0%,100% { translate: 0 0; } 50% { translate: 0 -18px; } }
 @keyframes rimrun { 0%,100% { box-shadow: var(--rim-top), var(--e-md), 0 0 0 2px rgba(240,68,74,.35); } 50% { box-shadow: var(--rim-top), var(--e-md), 0 0 0 8px rgba(240,68,74,.18), 0 0 48px rgba(240,68,74,.45); } }
 @media (prefers-reduced-motion: reduce) { .anim * { animation: none !important; } }
+
+/* ==========================================================================
+   ESTILO KingUp (acabamento) + @marketingharry (estrutura) — layouts k-*
+   Ver docs/research/design-inspiracao.md
+   ========================================================================== */
+.kit-k .motif-orbit { display: none; }
+.kit-k.theme-dark {
+  background:
+    radial-gradient(60% 40% at 50% 100%, rgba(157, 11, 14, .45) 0%, rgba(157, 11, 14, 0) 70%),
+    radial-gradient(70% 45% at 50% 0%, rgba(255, 255, 255, .07) 0%, rgba(255, 255, 255, 0) 70%),
+    radial-gradient(120% 90% at 50% 50%, rgba(3, 14, 20, 0) 55%, rgba(0, 0, 0, .55) 100%),
+    var(--c-bg);
+}
+.kit-k.theme-light {
+  background:
+    radial-gradient(80% 60% at 50% 40%, #ffffff 0%, rgba(255, 255, 255, 0) 70%),
+    radial-gradient(120% 90% at 50% 50%, rgba(3, 14, 20, 0) 60%, rgba(3, 14, 20, .08) 100%),
+    var(--c-paper);
+}
+
+/* destaque KingUp: palavra numa caixa sólida Vermelho-Self (texto branco, 8.6:1) */
+.kit-k .hl {
+  background: var(--c-red); color: var(--c-white); -webkit-background-clip: border-box; background-clip: border-box;
+  filter: none; text-shadow: none; padding: .02em .14em 0; margin: 0 .02em; border-radius: 6px;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+  box-shadow: 0 10px 30px rgba(157, 11, 14, .35);
+}
+.kit-k.theme-red .hl { background: var(--c-white); color: var(--c-red); text-decoration: none; }
+.kit-k .display { text-shadow: none; }
+
+/* topo e rodapé */
+.k-topbar .k-num { font-family: var(--f-body); font-weight: 500; font-size: var(--t-micro); color: var(--c-muted); font-variant-numeric: tabular-nums; }
+.kit-k.theme-light .k-num { color: #5b6a72; }
+.k-footer { margin-top: auto; display: flex; align-items: center; justify-content: space-between; min-height: 64px; position: relative; z-index: 12; }
+.k-pill { display: inline-flex; align-items: center; gap: var(--s-3); height: 64px; padding: 0 var(--s-5) 0 8px; border-radius: var(--r-pill);
+  background: #0b1a23; color: var(--c-white); font-size: var(--t-micro); font-weight: 500; border: 1px solid rgba(255,255,255,.12); box-shadow: var(--e-md); }
+.kit-k.theme-light .k-pill { background: var(--c-ink); }
+.k-pill-ico { width: 48px; height: 48px; border-radius: 12px; background: var(--c-red); display: grid; place-items: center; }
+.k-pill-ico .icon { width: 28px; height: 28px; transform: rotate(-45deg); }
+.k-dots { display: flex; gap: 10px; align-items: center; }
+.k-dots i { width: 12px; height: 12px; border-radius: 6px; background: rgba(255,255,255,.25); }
+.kit-k.theme-light .k-dots i { background: rgba(3,14,20,.18); }
+.k-dots i.on { width: 40px; background: var(--c-red-light); }
+.kit-k.theme-light .k-dots i.on { background: var(--c-red); }
+
+/* objetos secundários desfocados */
+.k-extra { position: absolute; z-index: 2; pointer-events: none; }
+.k-extra img { display: block; width: 100%; height: auto; }
+.kit-k .hero-visual { filter: drop-shadow(0 50px 60px rgba(0,0,0,.45)); }
+.kit-k.theme-light .hero-visual { filter: drop-shadow(0 40px 50px rgba(3,14,20,.22)); }
+
+/* K-HOOK — capa: linha de topo + título em 3 níveis + objeto gigante a sobrepor (Harry) */
+.k-topline { display: flex; align-items: center; justify-content: center; gap: 14px; font-size: var(--t-micro); font-weight: 500; color: rgba(255,255,255,.85); min-height: 56px; }
+.k-topline img { height: 48px; }
+.k-topline .sep { color: var(--c-red-light); }
+.k-hook-title { position: relative; z-index: 8; text-align: center; margin-top: var(--s-7); }
+.k-pre, .k-post { font-family: var(--f-body); font-weight: 300; font-size: 60px; line-height: 1.1; letter-spacing: -0.01em; }
+.k-post { margin-top: var(--s-4); color: rgba(255,255,255,.85); }
+.k-main { font-size: 250px; margin-top: var(--s-2); }
+.k-main .line { margin: 0 auto; }
+
+/* K-PROMISE — slide 2: texto grande fino, frases-chave a bold vermelho (Harry) */
+.l-k-promise .content { margin: var(--s-8) 0 auto; position: relative; z-index: 8; }
+.k-promise-text { font-family: var(--f-body); font-weight: 300; font-size: 72px; line-height: 1.12; letter-spacing: -0.015em; color: var(--c-ink); }
+.k-promise-text .line { display: block; }
+.k-promise-text strong { font-weight: 600; color: var(--c-red); }
+.k-note { margin-top: var(--s-7); display: inline-flex; align-items: center; gap: var(--s-3); font-size: var(--t-lead); font-weight: 600; color: var(--c-ink); }
+.k-note .icon { color: var(--c-red); width: 56px; height: 56px; }
+
+/* K-LESSON — grelha fixa Harry: mito → título → prova → conclusão */
+.k-lesson { display: flex; flex-direction: column; flex: 1; position: relative; z-index: 8; padding-top: var(--s-7); }
+.k-myth { display: flex; align-items: center; gap: var(--s-3); font-size: 44px; font-weight: 300; color: var(--c-muted); }
+.kit-k.theme-light .k-myth { color: #5b6a72; }
+.k-x { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: rgba(240,68,74,.14); color: var(--c-red-light); flex: none; }
+.kit-k.theme-light .k-x { background: #f6e4e4; color: var(--c-red); }
+.k-x .icon { width: 32px; height: 32px; }
+.k-myth-label { font-weight: 600; font-size: var(--t-micro); letter-spacing: var(--track-eyebrow); text-transform: uppercase; }
+.k-myth-text { text-decoration: line-through; text-decoration-color: var(--c-red-light); text-decoration-thickness: 4px; }
+.kit-k.theme-light .k-myth-text { text-decoration-color: var(--c-red); }
+.k-title { font-size: 168px; margin-top: var(--s-5); max-width: 620px; }
+.kit-k.theme-light .k-title { color: var(--c-ink); }
+.k-proof { margin-top: auto; border-radius: var(--r-lg); padding: var(--s-6); position: relative;
+  background: rgba(11, 26, 35, .92); border: 1px solid rgba(255,255,255,.1); box-shadow: var(--rim-top), var(--e-lg); backdrop-filter: blur(6px); }
+.kit-k.theme-light .k-proof { background: rgba(255,255,255,.94); border-color: rgba(3,14,20,.06); box-shadow: 0 20px 50px rgba(3,14,20,.12); }
+.k-proof-head { display: flex; align-items: center; gap: var(--s-3); font-family: var(--f-display); font-weight: 700; font-size: 60px; text-transform: uppercase; line-height: 1;
+  color: var(--c-red-light); margin-bottom: var(--s-4); }
+.kit-k.theme-light .k-proof-head { color: var(--c-red); }
+.k-check { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: var(--c-red); color: var(--c-white); }
+.k-check .icon { width: 30px; height: 30px; }
+.k-row { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); padding: var(--s-4) 0; border-top: 1px solid rgba(255,255,255,.1); font-size: 38px; line-height: 1.25; }
+.kit-k.theme-light .k-row { border-color: rgba(3,14,20,.08); color: var(--c-ink); }
+.k-row b { font-weight: 600; white-space: nowrap; color: var(--c-white); }
+.kit-k.theme-light .k-row b { color: var(--c-red); }
+.k-takeaway { margin-top: var(--s-6); margin-bottom: var(--s-6); font-size: 44px; line-height: 1.25; font-weight: 300; }
+.kit-k.theme-light .k-takeaway { color: var(--c-ink); }
+.k-takeaway strong { font-weight: 600; }
+
+/* K-POSTER — título fino grande centrado (KingUp) + objeto em baixo */
+.k-poster { position: relative; z-index: 8; text-align: center; margin-top: var(--s-8); display: flex; flex-direction: column; align-items: center; }
+.k-chip { display: inline-flex; align-items: center; height: 56px; padding: 0 var(--s-5); border-radius: var(--r-pill); background: #f6e4e4; color: var(--c-red);
+  font-weight: 600; font-size: var(--t-micro); letter-spacing: .02em; }
+.kit-k.theme-dark .k-chip { background: #2a1014; color: var(--c-red-light); }
+.k-thin { margin-top: var(--s-6); font-family: var(--f-body); font-weight: 300; font-size: 112px; line-height: 1.14; letter-spacing: -0.03em; color: var(--c-ink); }
+.kit-k.theme-dark .k-thin { color: var(--c-white); }
+.k-thin .line { display: block; white-space: nowrap; }
+.k-thin .hl { font-weight: 500; }
+.k-sub { margin-top: var(--s-5); max-width: 680px; font-size: 36px; line-height: 1.35; color: #4a5a63; }
+.kit-k.theme-dark .k-sub { color: var(--c-muted); }
+
+/* K-RECAP — resumo + sticker de CTA (Harry) */
+.k-recap { display: flex; flex-direction: column; flex: 1; position: relative; z-index: 8; padding-top: var(--s-6); }
+.k-recap-title { font-size: 120px; }
+.k-table { margin-top: var(--s-5); border-radius: var(--r-lg); background: var(--c-bg); padding: var(--s-3) var(--s-5); box-shadow: var(--e-lg); }
+.k-trow { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); padding: 18px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 32px; line-height: 1.2; }
+.k-trow:first-child { border-top: 0; }
+.k-trow span { display: flex; align-items: center; gap: 12px; }
+.k-trow .icon { width: 32px; height: 32px; flex: none; }
+.k-tmyth { color: var(--c-muted); text-decoration: line-through; text-decoration-color: rgba(240,68,74,.8); }
+.k-tmyth .icon { color: var(--c-red-light); }
+.k-ttruth { font-weight: 600; }
+.k-ttruth .icon { color: var(--c-red-light); }
+.k-sticker { align-self: flex-start; margin-top: var(--s-6); background: var(--c-white); color: var(--c-ink); border-radius: var(--r-lg); padding: var(--s-5) var(--s-6);
+  transform: rotate(-3deg); box-shadow: 0 30px 60px rgba(0,0,0,.35); }
+.anim .k-sticker.pop { animation: kpop 600ms var(--ease) both; animation-delay: var(--d, 0ms); }
+@keyframes kpop { 0% { opacity: 0; transform: rotate(-3deg) scale(.85); } 100% { opacity: 1; transform: rotate(-3deg) scale(1); } }
+.k-sticker-title { font-family: var(--f-display); font-weight: 700; font-size: 130px; line-height: .9; text-transform: uppercase; }
+.k-sticker-title .line { display: block; padding-top: .06em; }
+.k-sticker-sub { margin-top: var(--s-3); font-size: 34px; font-weight: 500; }
+.k-share { margin-top: var(--s-6); display: inline-flex; align-items: center; gap: var(--s-3); font-size: 36px; font-weight: 600; }
+.k-share .icon { width: 44px; height: 44px; }
+.k-partners { margin-top: auto; display: flex; align-items: center; gap: var(--s-5); padding-top: var(--s-5); border-top: 1px solid rgba(255,255,255,.25); }
+.k-partners img { height: 76px; width: auto; }
+.k-partners span { font-size: 28px; color: rgba(255,255,255,.92); }
+.k-partners .k-self { margin-left: auto; height: 56px; }
+.kit-k .accent { padding-right: .08em; }
+.k-thin .hl { padding: 0 .16em .04em; }
+.k-sticker { max-width: 600px; }

@@ -7,21 +7,23 @@
     "euFunded": true,
     "motionSlides": [
       1,
-      8
+      9
     ],
-    "style": "v2 — poster estilo @marketingharry / KingUp: objeto 3D gigante a sobrepor o título, pouco texto"
+    "style": "v3 — acabamento KingUp (objetos 3D clay cinzento + Vermelho-Self, palavra em caixa, pílula + pontos) + estrutura @marketingharry (capa 3 níveis → promessa → lições em grelha fixa → resumo + sticker CTA)"
   },
   "slides": [
     {
-      "layout": "cover",
-      "align": "center",
-      "eyebrow": "Erasmus+ · mitos vs realidade",
-      "title": "O Erasmus+\nnão é só\n==universidade==",
+      "layout": "k-hook",
+      "theme": "dark",
+      "topline": "Mobilidade Internacional",
+      "pre": "5 mitos que te impedem de",
+      "title": "ir para a\n==Europa==",
+      "post": "e porque são *todos* falsos",
       "size": 250,
       "visual": {
         "type": "image",
         "src": "assets/3d/globo-europa.png",
-        "width": 1060,
+        "width": 1120,
         "bottom": -470,
         "front": true
       },
@@ -30,129 +32,271 @@
         "dir": "assets/3d/globo-spin",
         "count": 60,
         "duration": 5,
-        "width": 1060,
+        "width": 1120,
         "bottom": -470,
         "front": true,
         "rise": true
       },
+      "extras": [
+        {
+          "src": "assets/3d/clay-aviao.png",
+          "width": 420,
+          "left": 640,
+          "top": 870,
+          "blur": 0,
+          "rotate": -8,
+          "float": true,
+          "z": 10
+        },
+        {
+          "src": "assets/3d/clay-capelo.png",
+          "width": 300,
+          "left": -110,
+          "top": 560,
+          "blur": 9,
+          "rotate": 14
+        },
+        {
+          "src": "assets/3d/clay-mealheiro.png",
+          "width": 200,
+          "left": 900,
+          "top": 150,
+          "blur": 12,
+          "rotate": -10,
+          "opacity": 0.85
+        }
+      ],
       "duration": 5
     },
     {
-      "layout": "myth",
-      "eyebrow": "Mito 01",
-      "myth": "É só para\nuniversitários",
-      "reality": "Há oportunidades para jovens dos 13 aos 30 anos — a estudar, a trabalhar ou entre uma coisa e outra.",
-      "chips": [
-        "Intercâmbios · 13–30",
-        "Voluntariado · 18–30",
-        "DiscoverEU · 18"
+      "layout": "k-promise",
+      "theme": "light",
+      "text": "Há jovens que nunca\nsaíram de Portugal\npor causa de **5 frases**\nque **não são verdade**.",
+      "note": "Vamos a elas",
+      "visual": {
+        "type": "image",
+        "src": "assets/3d/clay-aviao.png",
+        "width": 900,
+        "left": 240,
+        "bottom": 150,
+        "rotate": -6
+      }
+    },
+    {
+      "layout": "k-lesson",
+      "theme": "dark",
+      "mythLabel": "Mito 01",
+      "myth": "É só para universitários",
+      "title": "Dos 13 aos\n==30 anos==",
+      "rows": [
+        [
+          "Intercâmbios de jovens",
+          "13–30"
+        ],
+        [
+          "Corpo Europeu de Solidariedade",
+          "18–30"
+        ],
+        [
+          "DiscoverEU",
+          "18 anos"
+        ]
       ],
+      "takeaway": "A estudar, a trabalhar ou entre uma coisa e outra: **há lugar para ti.**",
       "visual": {
         "type": "image",
-        "src": "assets/3d/x-vermelho.png",
+        "src": "assets/3d/clay-capelo.png",
         "width": 560,
-        "left": 560,
-        "bottom": -60,
-        "rotate": 10
+        "left": 600,
+        "top": 330,
+        "rotate": 8
       }
     },
     {
-      "layout": "myth",
-      "eyebrow": "Mito 02",
+      "layout": "k-lesson",
+      "theme": "light",
+      "mythLabel": "Mito 02",
       "myth": "É caríssimo",
-      "reality": "Na Selfmade pagas só a **quota de sócio**. Viagem, alojamento e alimentação são apoiados pelo Erasmus+.",
+      "title": "Pagas só a\n==quota==",
+      "rows": [
+        [
+          "Viagem",
+          "apoiada"
+        ],
+        [
+          "Alojamento",
+          "apoiado"
+        ],
+        [
+          "Alimentação",
+          "apoiada"
+        ],
+        [
+          "Tu pagas",
+          "a quota de sócio"
+        ]
+      ],
+      "takeaway": "O Erasmus+ é financiado pela UE. **O dinheiro não é desculpa.**",
       "visual": {
         "type": "image",
-        "src": "assets/3d/x-vermelho.png",
-        "width": 560,
-        "left": 520,
-        "bottom": -60,
-        "rotate": -8
+        "src": "assets/3d/clay-mealheiro.png",
+        "width": 340,
+        "left": 700,
+        "top": 170,
+        "rotate": 4
       }
     },
     {
-      "layout": "myth",
-      "eyebrow": "Mito 03",
-      "myth": "Tens de falar\ninglês perfeito",
-      "reality": "Não há exame de línguas. Basta conseguires comunicar — aprendes lá, todos os dias.",
+      "layout": "k-lesson",
+      "theme": "dark",
+      "mythLabel": "Mito 03",
+      "myth": "Tens de falar inglês perfeito",
+      "title": "Não há\n==exame==",
+      "rows": [
+        [
+          "Teste de línguas",
+          "não há"
+        ],
+        [
+          "Precisas de",
+          "conseguir comunicar"
+        ],
+        [
+          "O resto",
+          "aprendes lá"
+        ]
+      ],
+      "takeaway": "Ninguém te pede perfeição. **Pede-te vontade.**",
       "visual": {
         "type": "image",
-        "src": "assets/3d/x-vermelho.png",
-        "width": 560,
-        "left": 560,
-        "bottom": -60,
-        "rotate": 14
+        "src": "assets/3d/clay-baloes.png",
+        "width": 540,
+        "left": 590,
+        "top": 230,
+        "rotate": -4
       }
     },
     {
-      "layout": "myth",
-      "eyebrow": "Mito 04",
-      "myth": "É uma semana\ne acabou",
-      "reality": "Intercâmbios de **5 a 21 dias**, voluntariado do Corpo Europeu de Solidariedade de **2 semanas a 12 meses**.",
+      "layout": "k-lesson",
+      "theme": "light",
+      "mythLabel": "Mito 04",
+      "myth": "É uma semana e acabou",
+      "title": "Até\n==12 meses==",
+      "rows": [
+        [
+          "Intercâmbios de jovens",
+          "5 a 21 dias"
+        ],
+        [
+          "Corpo Europeu de Solidariedade",
+          "2 semanas a 12 meses"
+        ]
+      ],
+      "takeaway": "Escolhes o formato que **cabe na tua vida.**",
       "visual": {
         "type": "image",
-        "src": "assets/3d/x-vermelho.png",
-        "width": 560,
-        "left": 520,
-        "bottom": -60,
-        "rotate": -12
-      }
-    },
-    {
-      "layout": "myth",
-      "eyebrow": "Mito 05",
-      "myth": "Já passei\nda idade",
-      "reality": "Trabalhas com jovens? Há **formações Erasmus+ para técnicos de juventude** — sem limite de idade.",
-      "visual": {
-        "type": "image",
-        "src": "assets/3d/x-vermelho.png",
-        "width": 560,
-        "left": 560,
-        "bottom": -60,
+        "src": "assets/3d/clay-calendario.png",
+        "width": 440,
+        "left": 620,
+        "top": 330,
         "rotate": 6
       }
     },
     {
-      "layout": "statement",
-      "valign": "top",
-      "eyebrow": "Bónus · DiscoverEU",
-      "title": "Fazes 18?\nViaja pela\nEuropa ==grátis==",
-      "body": "Passes de viagem grátis, sobretudo de comboio. Candidaturas em rondas ao longo do ano.",
+      "layout": "k-lesson",
+      "theme": "dark",
+      "mythLabel": "Mito 05",
+      "myth": "Já passei da idade",
+      "title": "Sem limite\nde ==idade==",
+      "rows": [
+        [
+          "Formações Erasmus+",
+          "técnicos de juventude"
+        ],
+        [
+          "Para quem",
+          "trabalha com jovens"
+        ],
+        [
+          "Limite de idade",
+          "não há"
+        ]
+      ],
+      "takeaway": "Trabalhas com jovens? **Também é para ti.**",
       "visual": {
         "type": "image",
-        "src": "assets/3d/18-vermelho.png",
-        "width": 440,
-        "left": 580,
-        "bottom": 40
+        "src": "assets/3d/clay-ampulheta.png",
+        "width": 360,
+        "left": 690,
+        "top": 320,
+        "rotate": 10
       }
     },
     {
-      "layout": "cta",
-      "valign": "top",
-      "eyebrow": "Queres a tua vaga?",
-      "title": "Comenta\n==EUROPA==",
-      "body": "Enviamos-te por mensagem as oportunidades abertas para ti.",
-      "button": "Envia a quem precisa de ler isto",
-      "saveShare": false,
+      "layout": "k-poster",
+      "theme": "light",
+      "eyebrow": "Bónus · DiscoverEU",
+      "title": "Fazes 18?\nViaja pela Europa\n==grátis==",
+      "body": "Passes de viagem grátis, sobretudo de comboio. Candidaturas em rondas ao longo do ano.",
+      "visual": {
+        "type": "image",
+        "src": "assets/3d/clay-comboio.png",
+        "width": 1100,
+        "left": 0,
+        "bottom": -250
+      }
+    },
+    {
+      "layout": "k-recap",
+      "theme": "red",
+      "title": "5 mitos, 5 verdades",
+      "rows": [
+        [
+          "Só universitários",
+          "Dos 13 aos 30"
+        ],
+        [
+          "É caríssimo",
+          "Só a quota de sócio"
+        ],
+        [
+          "Inglês perfeito",
+          "Não há exame"
+        ],
+        [
+          "Uma semana e acabou",
+          "Até 12 meses"
+        ],
+        [
+          "Já passei da idade",
+          "Formações sem limite"
+        ]
+      ],
+      "cta": "Comenta\n==Europa==",
+      "ctaSub": "e enviamos-te as vagas abertas",
+      "share": "Envia a quem precisa de ler isto",
       "partners": [
         "brand/logos/partners/erasmus-plus-white.png"
       ],
       "partnersNote": "Cofinanciado pela União Europeia",
       "visual": {
         "type": "image",
-        "src": "assets/3d/globo-europa.png",
-        "width": 760,
-        "left": 560,
-        "bottom": -400
+        "src": "assets/3d/clay-megafone.png",
+        "width": 400,
+        "left": 690,
+        "bottom": 110,
+        "rotate": -12,
+        "front": false
       },
       "motion": {
-        "type": "sequence",
-        "dir": "assets/3d/globo-spin",
-        "count": 60,
-        "duration": 5,
-        "width": 760,
-        "left": 560,
-        "bottom": -400
+        "type": "image",
+        "src": "assets/3d/clay-megafone.png",
+        "width": 400,
+        "left": 690,
+        "bottom": 110,
+        "rotate": -12,
+        "float": true,
+        "rise": true
       },
       "duration": 5
     }
