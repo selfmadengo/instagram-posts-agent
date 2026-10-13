@@ -1,0 +1,293 @@
+{
+  "meta": {
+    "format": "carousel",
+    "handle": "@selfmade_ngo",
+    "pillar": "Oportunidades / candidaturas",
+    "goal": "Inscrições no formulário + partilhas (sends)",
+    "euFunded": true,
+    "campaign": "European Youth Capitals for Democracy — DiscoverEU Ação Inclusiva (tema Pokémon GO)",
+    "remakeOf": "https://www.instagram.com/p/DWUG-LmDCCz/",
+    "motionSlides": [
+      1,
+      5
+    ]
+  },
+  "slides": [
+    {
+      "layout": "pk-cover",
+      "theme": "dark",
+      "badge": "Nova missão · **20 vagas** · 18 anos",
+      "title": "European\nYouth Capitals\nfor Democracy",
+      "sub": "DiscoverEU",
+      "hook": "Tens 18 anos e és da região do Fundão?\n**Apanha a Europa de comboio este verão.**",
+      "visual": {
+        "type": "image",
+        "src": "assets/3d/globo-europa.png",
+        "width": 1120,
+        "bottom": -640
+      },
+      "motion": {
+        "type": "sequence",
+        "dir": "assets/3d/globo-spin",
+        "count": 60,
+        "duration": 5,
+        "width": 1120,
+        "bottom": -640,
+        "rise": true
+      },
+      "extras": [
+        {
+          "src": "assets/3d/clay-comboio.png",
+          "width": 350,
+          "left": 650,
+          "top": 950,
+          "blur": 0,
+          "z": 6,
+          "float": true
+        }
+      ],
+      "logos": [
+        {
+          "src": "brand/logos/partners/agencia-nacional-erasmus-juventude.png",
+          "invert": true,
+          "h": 50
+        },
+        {
+          "src": "brand/logos/partners/discover-eu-white.png",
+          "h": 62
+        },
+        {
+          "src": "brand/logos/partners/fundao-white.png",
+          "h": 54
+        },
+        {
+          "src": "brand/logos/partners/erasmus-plus-white.png",
+          "h": 48
+        }
+      ],
+      "duration": 5
+    },
+    {
+      "layout": "pk-quest",
+      "theme": "light",
+      "kicker": "Missão desbloqueada",
+      "title": "A missão",
+      "text": "O **European Youth Capitals for Democracy** é um projeto DiscoverEU Ação Inclusiva da Selfmade para jovens do Fundão viverem a Europa e serem cidadãos mais ativos.",
+      "stats": [
+        {
+          "value": "20",
+          "label": "jovens do Fundão"
+        },
+        {
+          "value": "4",
+          "label": "viagens de comboio (Interrail)"
+        },
+        {
+          "value": "5",
+          "label": "participantes por grupo"
+        },
+        {
+          "value": "10",
+          "label": "dias de viagem"
+        }
+      ],
+      "note": "Educação não formal, visitas a organizações de juventude e reflexão em grupo sobre **o que é ser cidadão ativo hoje**."
+    },
+    {
+      "layout": "pk-missions",
+      "theme": "dark",
+      "kicker": "Objetivos",
+      "title": "As tuas\nmissões",
+      "items": [
+        {
+          "text": "Conectar-te aos valores democráticos e ao legado da Europa, visitando cidades históricas",
+          "xp": 85,
+          "points": 300
+        },
+        {
+          "text": "Aumentar a participação juvenil e a cidadania ativa",
+          "xp": 65,
+          "points": 200
+        },
+        {
+          "text": "Desenvolver competências de viagem, autonomia e pensamento crítico",
+          "xp": 75,
+          "points": 250
+        }
+      ]
+    },
+    {
+      "layout": "pk-trainer",
+      "theme": "light",
+      "kicker": "Para quem?",
+      "title": "Procuramos-te",
+      "cardTitle": "Treinador(a) DiscoverEU",
+      "cardSub": "Nível 18 · região do Fundão",
+      "rows": [
+        {
+          "icon": "user",
+          "k": "Idade",
+          "v": "18 anos"
+        },
+        {
+          "icon": "pin",
+          "k": "Residência",
+          "v": "Fundão ou região\nde Castelo Branco"
+        },
+        {
+          "icon": "star",
+          "k": "Interesse",
+          "v": "cidadania ativa\ne democracia"
+        },
+        {
+          "icon": "zap",
+          "k": "Experiência",
+          "v": "nenhuma, só motivação!"
+        }
+      ],
+      "note": "Nunca viajaste para fora (ou só até Espanha)? **Este projeto é mesmo para ti.**"
+    },
+    {
+      "layout": "pk-map",
+      "theme": "dark",
+      "kicker": "Rota da viagem",
+      "title": "10 dias de\nInterrail",
+      "text": "Vamos levar os jovens do Fundão de comboio por várias cidades europeias.",
+      "mapH": 560,
+      "stops": [
+        {
+          "name": "Bélgica",
+          "x": 120,
+          "y": 250,
+          "flag": "v:#1a1a1a,#fdda24,#ef3340"
+        },
+        {
+          "name": "Alemanha",
+          "x": 340,
+          "y": 170,
+          "flag": "h:#1a1a1a,#dd0000,#ffce00"
+        },
+        {
+          "name": "Polónia",
+          "x": 640,
+          "y": 160,
+          "flag": "h:#ffffff,#dc143c"
+        },
+        {
+          "name": "Áustria",
+          "x": 450,
+          "y": 420,
+          "flag": "h:#ed2939,#ffffff,#ed2939"
+        },
+        {
+          "name": "Hungria",
+          "x": 790,
+          "y": 430,
+          "flag": "h:#ce2939,#ffffff,#477050"
+        }
+      ],
+      "note": "*Itinerário base. O percurso, o tempo em cada cidade e o que visitar são decididos **em conjunto com cada grupo**.",
+      "duration": 5
+    },
+    {
+      "layout": "pk-items",
+      "theme": "light",
+      "kicker": "Vamos garantir",
+      "title": "Tudo na\nmochila",
+      "text": "Não te preocupes, já tratámos de tudo para a viagem.",
+      "items": [
+        {
+          "icon": "train",
+          "title": "Passe Interrail",
+          "text": "todas as viagens de comboio"
+        },
+        {
+          "icon": "bed",
+          "title": "Alojamento",
+          "text": "sempre garantido"
+        },
+        {
+          "icon": "food",
+          "title": "Alimentação",
+          "text": "pequeno-almoço, almoço, jantar e reforços"
+        },
+        {
+          "icon": "shield",
+          "title": "Seguro de viagem"
+        },
+        {
+          "icon": "book",
+          "title": "Conteúdo educativo",
+          "text": "sobre cidadania ativa e democracia"
+        },
+        {
+          "icon": "buoy",
+          "title": "Assistência e suporte",
+          "text": "durante toda a viagem"
+        }
+      ]
+    },
+    {
+      "layout": "pk-info",
+      "theme": "dark",
+      "kicker": "Mas afinal…",
+      "title": "O que é o\nDiscoverEU?",
+      "sub": "Inclusive Action",
+      "text": "Uma iniciativa da **União Europeia** que dá a jovens europeus a oportunidade de explorar a Europa de comboio.",
+      "chips": [
+        "Mobilidade",
+        "Interculturalidade",
+        "Participação juvenil"
+      ],
+      "visual": {
+        "type": "image",
+        "src": "assets/3d/clay-comboio.png",
+        "width": 860,
+        "left": 280,
+        "bottom": -20
+      }
+    },
+    {
+      "layout": "pk-steps",
+      "theme": "light",
+      "kicker": "Como participar?",
+      "title": "Só precisas\nde 3 coisas",
+      "steps": [
+        {
+          "icon": "insta",
+          "title": "Segue a @selfmade_ngo"
+        },
+        {
+          "icon": "form",
+          "title": "Preenche o formulário",
+          "text": "link na bio"
+        },
+        {
+          "icon": "message",
+          "title": "Faz uma entrevista presencial",
+          "text": "connosco, na Selfmade"
+        }
+      ],
+      "note": "**Depois de seres selecionado(a):** tornas-te sócio(a) da Associação Selfmade (obrigatório para participar) e fazes as sessões de preparação em grupo."
+    },
+    {
+      "layout": "pk-cta",
+      "theme": "red",
+      "title": "Partilha!",
+      "text": "Manda este post a um amigo\nque não pode perder esta oportunidade.",
+      "button": "Inscreve-te: link na bio",
+      "sub": "Também em **selfmade.pt**",
+      "logos": [
+        {
+          "src": "brand/logos/partners/erasmus-plus-white.png",
+          "h": 54,
+          "text": "Cofinanciado pela União Europeia"
+        },
+        {
+          "src": "brand/logos/selfmade-logo-white.png",
+          "h": 60
+        }
+      ]
+    }
+  ]
+}

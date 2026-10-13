@@ -25,3 +25,7 @@ brand/fonts/euclid-square/EuclidSquare-Bold.woff2
 No Claude Code: pede *"instala as fontes da marca a partir do Drive"* — o agente usa o conector Google Drive para as descarregar para estas pastas. Sem as fontes, os renders usam fontes de recurso (o resultado **não** fica conforme a marca).
 
 > Se tornares o repositório **privado** e a licença o permitir, podes remover estas linhas do `.gitignore` e versionar as fontes.
+
+## Pokemon Solid / Hollow (só campanha EYC · DiscoverEU)
+Fonte de fã freeware usada nas letras estilo Pokémon da campanha «European Youth Capitals for Democracy».
+Não está no git. Descarregar de https://www.dafont.com/pokemon.font e copiar `Pokemon Solid.ttf` → `brand/fonts/pokemon/PokemonSolid.ttf` e `Pokemon Hollow.ttf` → `brand/fonts/pokemon/PokemonHollow.ttf`.

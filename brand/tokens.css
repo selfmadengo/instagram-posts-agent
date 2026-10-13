@@ -21,6 +21,13 @@
   --c-paper:         #f4f2ef;  /* fundo claro para slides de ritmo (alternância claro/escuro) */
   --c-ink:           #030e14;  /* texto sobre fundo claro */
 
+  /* Campanha "European Youth Capitals for Democracy" (DiscoverEU · tema Pokémon GO) — exceção deliberada, só nesta campanha */
+  --c-pk-yellow:     #ffcb05;  /* letras estilo Pokémon (sempre com contorno azul) */
+  --c-pk-blue:       #2a5cb0;  /* contorno das letras */
+  --c-pk-blue-deep:  #12306b;  /* sombra/extrusão das letras */
+  --c-pk-sky:        #8fd3ff;  /* detalhes do mapa GO sobre escuro */
+  --f-pk: "Pokemon Solid", "Euclid Square", sans-serif;
+
   /* ---------- Tipografia ---------- */
   --f-display: "Thunder", "Bebas Neue", "Oswald", Impact, sans-serif;      /* Títulos */
   --f-body:    "Euclid Square", "Inter", "Helvetica Neue", Arial, sans-serif; /* Parágrafos */
