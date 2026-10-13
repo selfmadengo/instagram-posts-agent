@@ -18,6 +18,10 @@
   --c-white:         #ffffff;  /* Letras (10 %) */
   --c-muted:         #a3b1ba;  /* texto secundário sobre fundo escuro (8.9:1) */
   --c-line:          rgba(255, 255, 255, 0.14);
+  --rgb-red:         157, 11, 14;   /* Vermelho-Self em RGB (para transparências) */
+  --rgb-red-light:   240, 68, 74;   /* Vermelho-Self Luz em RGB */
+  --c-red-tint-dark: #2a1014;       /* fundo de chip vermelho sobre escuro */
+  --c-red-tint-light:#f6e4e4;       /* fundo de chip vermelho sobre claro */
   --c-paper:         #f4f2ef;  /* fundo claro para slides de ritmo (alternância claro/escuro) */
   --c-ink:           #030e14;  /* texto sobre fundo claro */
 

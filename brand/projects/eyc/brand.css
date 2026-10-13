@@ -1,0 +1,71 @@
+/* ==========================================================================
+   BRAND KIT DO PROJETO — European Youth Capitals for Democracy (DiscoverEU Ação Inclusiva)
+   Ativa-se com  "meta": { "brand": "eyc" }  no post.json  →  <section class="brand-eyc">
+   Fonte: post original (instagram.com/p/DWUG-LmDCCz) + infopack (Canva DAG5pHQ54I4).
+   Regras: mantém o Preto Azulado e o branco da Selfmade; o vermelho é SUBSTITUÍDO
+   pelo amarelo + azul do projeto; títulos em Pokemon Solid, texto em Montserrat.
+   ========================================================================== */
+@font-face { font-family: "Montserrat"; src: url("../../fonts/montserrat/montserrat-latin-400-normal.woff2") format("woff2"); font-weight: 400; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("../../fonts/montserrat/montserrat-latin-ext-400-normal.woff2") format("woff2"); font-weight: 400; unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("../../fonts/montserrat/montserrat-latin-500-normal.woff2") format("woff2"); font-weight: 500; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("../../fonts/montserrat/montserrat-latin-ext-500-normal.woff2") format("woff2"); font-weight: 500; unicode-range: U+0100-02AF, U+1E00-1E9F; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("../../fonts/montserrat/montserrat-latin-600-normal.woff2") format("woff2"); font-weight: 600; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("../../fonts/montserrat/montserrat-latin-ext-600-normal.woff2") format("woff2"); font-weight: 600; unicode-range: U+0100-02AF, U+1E00-1E9F; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("../../fonts/montserrat/montserrat-latin-700-normal.woff2") format("woff2"); font-weight: 700; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("../../fonts/montserrat/montserrat-latin-ext-700-normal.woff2") format("woff2"); font-weight: 700; unicode-range: U+0100-02AF, U+1E00-1E9F; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("../../fonts/montserrat/montserrat-latin-800-normal.woff2") format("woff2"); font-weight: 800; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("../../fonts/montserrat/montserrat-latin-ext-800-normal.woff2") format("woff2"); font-weight: 800; unicode-range: U+0100-02AF, U+1E00-1E9F; font-display: block; }
+
+.brand-eyc {
+  /* fontes do projeto */
+  --f-body:    "Montserrat", "Euclid Square", Arial, sans-serif;
+  --f-display: "Montserrat", Arial, sans-serif;           /* números/títulos secundários (peso 800) */
+  --f-accent:  "Montserrat", Arial, sans-serif;
+
+  /* o "acento" do motor (antes Vermelho-Self) passa a ser o AZUL do projeto */
+  --c-red:        #2a5cb0;   /* azul EYC — fundos de chips, ícones, botões (branco por cima: 6.3:1) */
+  --c-red-top:    #3d7dca;
+  --c-red-bottom: #1d4a94;
+  --c-red-light:  #ffcb05;   /* amarelo EYC — texto/ícones de destaque sobre escuro (12:1) */
+  --rgb-red:       42, 92, 176;
+  --rgb-red-light: 255, 203, 5;
+  --c-red-tint-dark:  #12264a;  /* chip sobre escuro */
+  --c-red-tint-light: #e3ecf9;  /* chip/alerta sobre claro */
+}
+/* números grandes em Montserrat ExtraBold */
+.brand-eyc .pk-stat b, .brand-eyc .num { font-weight: 800; letter-spacing: -0.03em; }
+.brand-eyc .pk-stat b { font-size: 112px; }
+/* fundo escuro: nebulosa azul em vez de vermelha */
+.brand-eyc.kit-pk.theme-dark {
+  background:
+    radial-gradient(70% 45% at 85% 10%, rgba(42, 92, 176, .38) 0%, rgba(42, 92, 176, 0) 70%),
+    radial-gradient(70% 45% at 10% 95%, rgba(61, 125, 202, .30) 0%, rgba(61, 125, 202, 0) 70%),
+    var(--c-bg);
+}
+/* "tema red" (CTA final) vira azul profundo do projeto */
+.brand-eyc.theme-red {
+  background:
+    radial-gradient(100% 60% at 50% 0%, #3d7dca 0%, rgba(61, 125, 202, 0) 70%),
+    linear-gradient(180deg, #2a5cb0 0%, #12306b 100%);
+}
+/* pílula e pontos do rodapé: amarelo do projeto */
+.brand-eyc .k-pill-ico { background: var(--c-pk-yellow); color: var(--c-pk-blue-deep); }
+.brand-eyc.theme-light .k-dots i.on { background: var(--c-pk-blue); }
+/* kicker: azul com raio amarelo */
+.brand-eyc .pk-kicker { background: var(--c-pk-blue); }
+/* destaques de texto em azul (claro) / branco (escuro) */
+.brand-eyc.theme-light .pk-text strong { color: var(--c-pk-blue); }
+.brand-eyc .pk-stat b { color: var(--c-pk-blue); }
+.brand-eyc.theme-dark .pk-stat b { color: var(--c-pk-yellow); }
+/* pins do mapa: contorno amarelo, rota amarela */
+.brand-eyc .pk-pin-head { border-color: var(--c-pk-yellow); }
+.brand-eyc .pk-pin::after { background: rgba(255, 203, 5, .55); }
+/* XP e alertas */
+.brand-eyc .pk-alert { border-left-color: var(--c-pk-blue); }
+.brand-eyc .pk-alert strong { color: var(--c-pk-blue); }
+.brand-eyc .pk-tk .icon { color: var(--c-pk-blue); }
+.brand-eyc .pk-avatar { color: var(--c-pk-blue); }
+.brand-eyc .pk-send { color: var(--c-pk-blue); }
+.brand-eyc .pk-chips span { background: var(--c-red-tint-dark); color: var(--c-pk-yellow); border-color: rgba(255,203,5,.4); }
+.brand-eyc .pk-badge i { background: var(--c-pk-yellow); box-shadow: 0 0 0 6px rgba(255,203,5,.25); }
+.brand-eyc .pk-hook { font-size: 40px; }

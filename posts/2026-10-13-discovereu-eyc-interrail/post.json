@@ -10,7 +10,8 @@
     "motionSlides": [
       1,
       5
-    ]
+    ],
+    "brand": "eyc"
   },
   "slides": [
     {
@@ -22,13 +23,13 @@
       "hook": "Tens 18 anos e és da região do Fundão?\n**Apanha a Europa de comboio este verão.**",
       "visual": {
         "type": "image",
-        "src": "assets/3d/globo-europa.png",
+        "src": "assets/3d/eyc-globo.png",
         "width": 1120,
         "bottom": -640
       },
       "motion": {
         "type": "sequence",
-        "dir": "assets/3d/globo-spin",
+        "dir": "assets/3d/eyc-globo-spin",
         "count": 60,
         "duration": 5,
         "width": 1120,
@@ -37,7 +38,7 @@
       },
       "extras": [
         {
-          "src": "assets/3d/clay-comboio.png",
+          "src": "assets/3d/eyc-comboio-azul.png",
           "width": 350,
           "left": 650,
           "top": 950,
@@ -241,7 +242,7 @@
       ],
       "visual": {
         "type": "image",
-        "src": "assets/3d/clay-comboio.png",
+        "src": "assets/3d/eyc-comboio-azul.png",
         "width": 860,
         "left": 280,
         "bottom": -20

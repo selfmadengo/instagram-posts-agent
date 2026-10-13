@@ -369,7 +369,7 @@
 
   const bg = s.background ? `<div class="bg-image"><img src="${asset(s.background)}" alt=""></div>` : "";
   document.getElementById("stage").innerHTML = `
-    <section class="slide theme-${theme} l-${s.layout || "statement"} ${s.align === "center" ? "center" : ""} ${s.valign === "top" ? "top" : ""} ${s.visual ? "has-visual" : ""} ${isVertical ? "vertical" : ""} ${String(s.layout).startsWith("k-") ? "kit-k" : ""} ${String(s.layout).startsWith("pk-") ? "kit-k kit-pk" : ""} ${window.__ANIM__ ? "anim" : ""}">
+    <section class="slide theme-${theme} ${meta.brand ? `brand-${meta.brand}` : ""} l-${s.layout || "statement"} ${s.align === "center" ? "center" : ""} ${s.valign === "top" ? "top" : ""} ${s.visual ? "has-visual" : ""} ${isVertical ? "vertical" : ""} ${String(s.layout).startsWith("k-") ? "kit-k" : ""} ${String(s.layout).startsWith("pk-") ? "kit-k kit-pk" : ""} ${window.__ANIM__ ? "anim" : ""}">
       ${bg}<div class="motif-orbit"></div>${String(s.layout).startsWith("pk-") && theme !== "light" ? stars() : ""}
       ${extras(s.extras)}${visual(s.visual)}
       <div class="frame">${body}</div>

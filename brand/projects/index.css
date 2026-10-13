@@ -1,0 +1,3 @@
+/* Brand kits de PROJETOS específicos. Cada um só se aplica a <section class="brand-<id>"> (meta.brand no post.json).
+   Posts genéricos da Selfmade não declaram meta.brand e usam só brand/tokens.css. */
+@import url("./eyc/brand.css");
