@@ -1,7 +1,7 @@
 {
   "meta": {
     "format": "carousel",
-    "handle": "@associacaoselfmade",
+    "handle": "@selfmade_ngo",
     "pillar": "Oportunidades (mobilidade)",
     "goal": "Partilhas (sends) + comentários com palavra-chave",
     "status": "exemplo — validar factos e handle antes de publicar"
@@ -37,7 +37,7 @@
       "layout": "steps",
       "title": "Entra em\n4 passos",
       "steps": [
-        { "title": "Segue a @associacaoselfmade", "text": "Publicamos cada vaga assim que abre." },
+        { "title": "Segue a @selfmade_ngo", "text": "Publicamos cada vaga assim que abre." },
         { "title": "Escolhe o projeto", "text": "País, tema e datas que te encaixam." },
         { "title": "Preenche o formulário", "text": "5 minutos. Sem CV obrigatório." },
         { "title": "Faz a mala", "text": "Nós tratamos do resto contigo." }

@@ -30,6 +30,7 @@ templates/                    motor HTML/CSS dos slides (carrossel, story, reel)
 scripts/
   render.mjs                  post.json → PNG (1080×1440 ou 1080×1920)
   render-video.mjs            post.json → MP4 em motion graphics (frame a frame, determinístico)
+  export-pdf.mjs              post → PDF vetorial editável (para importar no Canva)
   contact-sheet.mjs           folha de revisão (+ teste em tons de cinzento)
   contrast.mjs                verificação de contraste WCAG
 assets/3d · photos · icons    banco de objetos 3D, fotos reais e ícones

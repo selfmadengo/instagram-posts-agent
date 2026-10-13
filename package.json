@@ -8,9 +8,11 @@
     "render": "node scripts/render.mjs",
     "video": "node scripts/render-video.mjs",
     "contrast": "node scripts/contrast.mjs",
+    "pdf": "node scripts/export-pdf.mjs",
     "contact-sheet": "node scripts/contact-sheet.mjs"
   },
   "dependencies": {
+    "pdf-lib": "^1.17.1",
     "playwright": "1.56.1"
   }
 }

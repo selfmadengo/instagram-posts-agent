@@ -4,7 +4,7 @@
 {
   "meta": {
     "format": "carousel",          // carousel (1080×1440) | story | reel (1080×1920)
-    "handle": "@associacaoselfmade",
+    "handle": "@selfmade_ngo",
     "pillar": "Oportunidades",     // ver docs/content-playbook.md
     "goal": "Partilhas + comentários",
     "output": "reel.mp4",          // só vídeo (opcional)

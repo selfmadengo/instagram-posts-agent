@@ -65,7 +65,7 @@
   const theme = s.theme || autoTheme();
   const dark = theme !== "light";
   const logoIcon = asset(dark ? "brand/logos/selfmade-icon-white.png" : "brand/logos/selfmade-icon-red.png");
-  const handle = meta.handle || "@associacaoselfmade";
+  const handle = meta.handle || "@selfmade_ngo";
   const pad = (n) => String(n).padStart(2, "0");
 
   const topbar = () => `
