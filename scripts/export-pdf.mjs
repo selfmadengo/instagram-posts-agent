@@ -29,7 +29,7 @@ const flat = process.argv.includes("--flat");
 const HIDE_TEXT = `*{-webkit-text-fill-color:transparent!important;text-shadow:none!important}
   .hl{background:none!important;filter:none!important}`;
 // passo B: só o texto, por cima da imagem do passo A
-const TEXT_ONLY = (bg) => `*{background:transparent!important;box-shadow:none!important;border-color:transparent!important;filter:none!important}
+const TEXT_ONLY = (bg) => `*{background:transparent!important;box-shadow:none!important;text-shadow:none!important;border-color:transparent!important;filter:none!important}
   img,svg,.brand-orb,.motif-orbit,.hero-visual,.hero-fade,.progress{visibility:hidden!important}
   .slide::after{display:none!important}
   .slide{background:url(${bg}) center/cover no-repeat!important}
