@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "format": "carousel",
+    "handle": "@selfmade_ngo",
+    "pillar": "Educação / mitos",
+    "goal": "Partilhas (sends) + comentários com palavra-chave EUROPA",
+    "euFunded": true
+  },
+  "slides": [
+    {
+      "layout": "cover",
+      "eyebrow": "Erasmus+ · mitos vs realidade",
+      "title": "O Erasmus+\nnão é só\n==universidade==",
+      "subtitle": "5 mitos que te estão a fazer perder viagens.",
+      "visual": { "type": "orb", "size": 820, "bottom": -360 }
+    },
+    {
+      "layout": "myth",
+      "eyebrow": "Mito 01",
+      "myth": "É só para\nuniversitários",
+      "reality": "Há oportunidades para jovens dos 13 aos 30 anos — a estudar, a trabalhar ou entre uma coisa e outra.",
+      "chips": ["Intercâmbios · 13–30", "Voluntariado · 18–30", "DiscoverEU · 18"]
+    },
+    {
+      "layout": "myth",
+      "eyebrow": "Mito 02",
+      "myth": "É caríssimo",
+      "reality": "Na Selfmade pagas só a **quota de sócio**. Viagem, alojamento e alimentação são apoiados pelo Erasmus+."
+    },
+    {
+      "layout": "myth",
+      "eyebrow": "Mito 03",
+      "myth": "Tens de falar\ninglês perfeito",
+      "reality": "Não há exame de línguas. Basta conseguires comunicar — aprendes lá, todos os dias."
+    },
+    {
+      "layout": "myth",
+      "eyebrow": "Mito 04",
+      "myth": "É uma semana\ne acabou",
+      "reality": "Intercâmbios de **5 a 21 dias**, voluntariado do Corpo Europeu de Solidariedade de **2 semanas a 12 meses**."
+    },
+    {
+      "layout": "myth",
+      "eyebrow": "Mito 05",
+      "myth": "Já passei\nda idade",
+      "reality": "Trabalhas com jovens? Há **formações Erasmus+ para técnicos de juventude** — sem limite de idade."
+    },
+    {
+      "layout": "stat",
+      "eyebrow": "Bónus · DiscoverEU",
+      "value": "18",
+      "label": "anos = passe para viajar\npela Europa, grátis",
+      "body": "Fazes 18 anos? O DiscoverEU dá passes de viagem (sobretudo de comboio). As candidaturas abrem em rondas ao longo do ano."
+    },
+    {
+      "layout": "cta",
+      "eyebrow": "Queres a tua vaga?",
+      "title": "Comenta\n==EUROPA==",
+      "body": "Enviamos-te por mensagem as oportunidades abertas para ti.",
+      "button": "Envia a quem precisa de ler isto",
+      "saveShare": false,
+      "partners": ["brand/logos/partners/erasmus-plus-white.png"],
+      "partnersNote": "Cofinanciado pela União Europeia"
+    }
+  ]
+}

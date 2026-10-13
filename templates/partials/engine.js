@@ -135,6 +135,17 @@
           <div ${R("step", i + 1)}><div class="dot">${i + 1}</div><h3>${md(st.title)}</h3>${st.text ? `<p>${md(st.text)}</p>` : ""}</div>`).join("")}
         </div>${footer()}`;
       break;
+    case "myth":
+      body = `${topbar()}<div class="content">
+        <div ${R("eyebrow", 0)} style="margin-bottom:56px">${esc(s.eyebrow || "Mito")}</div>
+        <h2 ${R("display myth-text", 1)}>${lines(s.myth)}</h2>
+        <div ${R("card key reality", 2)}>
+          <div class="reality-head">${icon("check")} ${esc(s.realityLabel || "Realidade")}</div>
+          <p>${md(s.reality)}</p>
+        </div>
+        ${s.chips?.length ? `<div ${R("chips", 3)}>${s.chips.map((c) => `<span class="chip">${esc(c)}</span>`).join("")}</div>` : ""}
+        </div>${footer()}`;
+      break;
     case "stat":
       body = `${topbar()}<div class="content">
         ${s.eyebrow ? `<div ${R("eyebrow", 0)} style="margin-bottom:40px">${esc(s.eyebrow)}</div>` : ""}

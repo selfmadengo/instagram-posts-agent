@@ -229,6 +229,21 @@ strong { font-weight: 600; }
 .l-steps .step p { font-size: var(--t-body); line-height: 1.4; margin-top: var(--s-2); color: rgba(255,255,255,.82); }
 .theme-light .l-steps .step p { color: #24323a; }
 
+/* MYTH (mito riscado → realidade) */
+.l-myth .content { margin: auto 0; }
+.l-myth .myth-text { font-size: 170px; color: var(--c-muted); text-shadow: none; }
+.theme-light .l-myth .myth-text { color: #5b6a72; }
+.l-myth .myth-text .line { position: relative; width: max-content; }
+.l-myth .myth-text .line::after { content: ""; position: absolute; left: -2%; right: -2%; top: 54%; height: 14px; border-radius: 7px;
+  background: var(--c-red-light); transform: rotate(-4deg); box-shadow: 0 4px 12px rgba(0,0,0,.35); }
+.theme-light .l-myth .myth-text .line::after { background: var(--c-red); }
+.l-myth .reality { margin-top: var(--s-8); padding: var(--s-7) var(--s-6); }
+.l-myth .reality-head { display: flex; align-items: center; gap: var(--s-3); font-family: var(--f-display); font-weight: 700;
+  font-size: 72px; line-height: 1; text-transform: uppercase; color: var(--c-red-light); margin-bottom: var(--s-4); }
+.theme-light .l-myth .reality-head { color: var(--c-red); }
+.l-myth .reality p { font-size: 54px; line-height: 1.3; font-weight: 500; }
+.l-myth .chips { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
+
 /* STAT */
 .l-stat .content { margin: auto 0; }
 .l-stat .big { margin-top: var(--s-6); font-family: var(--f-display); font-weight: 700; font-size: 420px; line-height: .82; letter-spacing: -0.01em; }
