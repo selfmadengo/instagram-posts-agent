@@ -38,13 +38,12 @@
       },
       "extras": [
         {
-          "src": "assets/3d/eyc-greatball.png",
-          "width": 400,
-          "left": 600,
-          "top": 905,
+          "src": "assets/3d/eyc-comboio-azul.png",
+          "width": 350,
+          "left": 650,
+          "top": 950,
           "blur": 0,
-          "z": 5,
-          "rotate": -8,
+          "z": 6,
           "float": true
         }
       ],
@@ -208,7 +207,7 @@
       "theme": "light",
       "kicker": "Vamos garantir",
       "title": "Tudo na\nmochila",
-      "text": "Não te preocupes, já tratámos de tudo para a viagem.",
+      "text": "Não te preocupes, já tratámos de tudo.",
       "items": [
         {
           "icon": "train",
@@ -240,7 +239,17 @@
           "text": "durante toda a viagem"
         }
       ],
-      "bag": "A tua mochila"
+      "bag": "A tua mochila",
+      "visual": {
+        "type": "image",
+        "src": "assets/3d/eyc-greatball.png",
+        "width": 340,
+        "left": 660,
+        "top": 150,
+        "rotate": -12,
+        "front": false,
+        "float": true
+      }
     },
     {
       "layout": "pk-info",

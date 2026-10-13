@@ -41,7 +41,7 @@ Cofinanciado pela União Europeia, através do programa Erasmus+ (DiscoverEU Aç
 ## Alt text
 Carrossel com o tema Pokémon GO, sobre o projeto European Youth Capitals for Democracy (DiscoverEU Ação Inclusiva) da Associação Selfmade.
 - Capa: título em letras amarelas com contorno azul sobre um céu estrelado, um globo terrestre e um comboio, e o texto "Tens 18 anos e és da região do Fundão? Apanha a Europa de comboio este verão".
-- Capa com uma Great Ball azul e amarela à frente da Terra.
+- Capa com um comboio à frente da Terra; Great Ball azul e amarela no slide da mochila.
 - Slides seguintes: a missão (20 jovens, 4 viagens de comboio, 5 por grupo, 10 dias), os 3 objetivos como cartões de pesquisa do Pokémon GO e o perfil de participante (18 anos, Fundão ou região de Castelo Branco).
 - Depois: o mapa real da Europa com a rota base por ordem (Bélgica, Alemanha, Áustria, Polónia, Hungria) e um comboio a percorrê-la, o que está garantido, o que é o DiscoverEU e os 3 passos para participar.
 - Último slide: apelo à partilha.
