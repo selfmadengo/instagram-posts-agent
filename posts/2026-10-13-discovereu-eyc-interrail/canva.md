@@ -1,5 +1,5 @@
 # Canva
-- **v2 · brand kit do projeto EYC (usar esta)**: https://www.canva.com/d/LESW4srszVu1H2w (9 páginas, imagem fiel, sem vermelho).
-- Vídeos na biblioteca de media: «Selfmade EYC DiscoverEU v2 — slide 01 animado» (VAHX5wad4p8) e «… slide 05 animado (mapa)» (VAHX5_rXy0o). Na publicação, trocar as páginas 1 e 5 pelos vídeos.
-- Versão antiga (ainda com vermelho; pode ser apagada): https://www.canva.com/d/8J0zvgLYv-4hcGm e os vídeos VAHX5l1U8aA / VAHX5lJedeQ.
+- **v3 · Pokémon GO, mapa real e Great Ball (usar esta)**: https://www.canva.com/d/Cu7pK8ZjVTUhirS (9 páginas, imagem fiel).
+- Vídeos na biblioteca de media: «Selfmade EYC DiscoverEU v3 — slide 01 animado» (VAHX6Gs8IAc) e «… slide 05 mapa com comboio» (VAHX6Cjb40Q). Na publicação, trocar as páginas 1 e 5 pelos vídeos.
+- Versões antigas (podem ser apagadas): v2 https://www.canva.com/d/LESW4srszVu1H2w · v1 com vermelho https://www.canva.com/d/8J0zvgLYv-4hcGm.
 - Infopack de referência: Canva DAG5pHQ54I4.
