@@ -3,7 +3,9 @@
  * Exporta um post para PDF híbrido (1 página por slide) para importar no Canva como design editável:
  *   - camada de fundo = imagem (objeto 3D, gradientes, cartões, sombras, logos, ícones) → fidelidade total
  *   - camada de texto = vetorial e editável no Canva
- * --flat : PDF 100 % vetorial (sem camada de imagem; o Canva perde alguns efeitos CSS)
+ * --flat     : PDF 100 % vetorial (sem camada de imagem; o Canva perde alguns efeitos CSS)
+ * --editable : PDF híbrido com texto editável (o Canva troca as fontes da marca ao importar)
+ * (por omissão) imagem 100 % fiel: cada página = PNG do slide (export/slide-NN.png)
  *   node scripts/export-pdf.mjs posts/<pasta>   → export/<pasta>.pdf
  */
 import { chromium } from "playwright";
@@ -25,6 +27,22 @@ mkdirSync(out, { recursive: true });
 const browser = await chromium.launch();
 const tpl = pathToFileURL(join(ROOT, "templates/carousel/carousel.html")).href;
 const flat = process.argv.includes("--flat");
+const editable = process.argv.includes("--editable") || flat;
+if (!editable) {
+  // modo fiel: usa os PNG já renderizados (correr antes `node scripts/render.mjs`)
+  const { existsSync } = await import("node:fs");
+  const doc = await PDFDocument.create();
+  for (let i = 0; i < post.slides.length; i++) {
+    const png = join(out, `slide-${String(i + 1).padStart(2, "0")}.png`);
+    if (!existsSync(png)) { console.error("Falta", png, "— corre primeiro scripts/render.mjs"); process.exit(1); }
+    const img = await doc.embedPng(readFileSync(png));
+    doc.addPage([W, H]).drawImage(img, { x: 0, y: 0, width: W, height: H });
+  }
+  const file = join(out, `${basename(postDir)}.pdf`);
+  writeFileSync(file, await doc.save());
+  console.log("✓", file.replace(ROOT + "/", ""), `(${post.slides.length} páginas, imagem fiel)`);
+  process.exit(0);
+}
 // passo A: tudo menos o texto (o texto fica transparente mas mantém o lugar)
 const HIDE_TEXT = `*{-webkit-text-fill-color:transparent!important;text-shadow:none!important}
   .hl{background:none!important;filter:none!important}`;

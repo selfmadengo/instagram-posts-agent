@@ -47,7 +47,7 @@ Conta: **@selfmade_ngo**.
 ## Envio para o Canva
 1. Preferido: `mcp__Canva__create-upload-url` → `curl -X POST -H "Content-Type: application/octet-stream" --data-binary @export/<pasta>.pdf <upload_url>` → usar o id devolvido. Requer `www.canva.com` autorizado na rede do ambiente.
 2. Alternativa: `mcp__Canva__import-design-from-url` com um URL público HTTPS do PDF (`intended_design_type: "instagram_post"`, nome = pasta do post).
-3. O PDF é **híbrido**: fundo em imagem (objeto 3D, gradientes, cartões, logos) + texto vetorial editável. Para o texto manter a marca no Canva, as fontes **Thunder, Euclid Square e Instrument Serif têm de estar carregadas no Brand Kit do Canva** — senão o Canva substitui-as e o texto desalinha.
+3. **Por omissão o PDF é imagem 100 % fiel** (decisão da equipa a 13/10/2026): o Canva não usa a Thunder/Euclid ao importar PDF, mesmo com as fontes no Brand Kit. Alterações de texto fazem-se aqui e reenviam-se. (`--editable` gera a versão híbrida com texto editável, se pedirem.)
 4. Verifica sempre com `mcp__Canva__read-design` (thumbnails) e corrige antes de entregar.
 5. Depois de criado, partilha o link do design e regista-o em `posts/<pasta>/canva.md`.
 
