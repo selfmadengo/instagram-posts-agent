@@ -19,6 +19,12 @@ Carrossel da Associação Selfmade: título "O Erasmus+ não é só universidade
 ## 1.º comentário (fixar)
 Qual destes mitos já ouviste? 👇 (1, 2, 3, 4 ou 5)
 
+## Ficheiros para publicar (carrossel misto, 8 slides 3:4)
+1. `export/slide-01.mp4` — capa animada (globo 3D a rodar, 5 s)
+2–7. `export/slide-02.png` … `export/slide-07.png`
+8. `export/slide-08.mp4` — CTA animado (5 s)
+(versões estáticas de 1 e 8: `slide-01.png`, `slide-08.png`)
+
 ## Publicação
 - Dia/hora: terça a quinta, 18h–20h (rever com as Insights ao fim de 4 semanas).
 - Respostas a "EUROPA": responder a todos por DM nas primeiras 2 h (sinal de relação + conversão).

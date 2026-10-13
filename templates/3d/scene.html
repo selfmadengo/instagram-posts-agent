@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>Selfmade — Objetos 3D</title>
+<style>html,body{margin:0;background:transparent;overflow:hidden}canvas{display:block}</style>
+<script type="importmap">
+{ "imports": {
+  "three": "/node_modules/three/build/three.module.js",
+  "three/addons/": "/node_modules/three/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<script type="module">
+/* ==========================================================================
+   Renderizador de objetos 3D da Selfmade (three.js, fundo transparente).
+   Lê window.__SCENE__ = { object, size, yaw, pitch, roll, lon, lat, rim, zoom }
+   objects: "globe" | "plane" | "globe-plane" | "passport" | "suitcase"
+   Luz de cima-esquerda (key), contraluz vermelha da marca (rim), sombra para baixo.
+   ========================================================================== */
+import * as THREE from "three";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { TTFLoader } from "three/addons/loaders/TTFLoader.js";
+import { Font } from "three/addons/loaders/FontLoader.js";
+import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
+
+const S = Object.assign({ object: "globe", size: 1600, yaw: 0, pitch: 0, roll: 0, lon: -8, lat: 38, rim: "#ff2a2e", zoom: 1 }, window.__SCENE__ || {});
+const deg = THREE.MathUtils.degToRad;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1);
+renderer.setSize(S.size, S.size);
+renderer.setClearColor(0x000000, 0);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
+camera.position.set(0, 0, 7.2 / S.zoom);
+
+// ---------- luzes: key de cima-esquerda, fill suave, rim vermelho de trás ----------
+scene.add(new THREE.AmbientLight(0xffffff, 0.18));
+const key = new THREE.DirectionalLight(0xffffff, 2.6); key.position.set(-4, 5, 5); scene.add(key);
+const fill = new THREE.DirectionalLight(0x9fb7ff, 0.35); fill.position.set(5, -1, 3); scene.add(fill);
+const rim = new THREE.DirectionalLight(new THREE.Color(S.rim), 3.2); rim.position.set(4, 1.5, -5); scene.add(rim);
+const rim2 = new THREE.DirectionalLight(new THREE.Color(S.rim), 1.6); rim2.position.set(-3, -3, -4); scene.add(rim2);
+
+const loader = new THREE.TextureLoader();
+const tex = (p, srgb = true) => new Promise((res) => loader.load(p, (t) => { if (srgb) t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; res(t); }));
+
+// ---------- GLOBO (texturas NASA Blue Marble — domínio público) ----------
+async function makeGlobe(r = 1) {
+  const [map, bump, spec, clouds] = await Promise.all([
+    tex("/assets/textures/earth-blue-marble.jpg"),
+    tex("/assets/textures/earth-topology.png", false),
+    tex("/assets/textures/earth-water.png", false),
+    tex("/assets/textures/clouds.png"),
+  ]);
+  const g = new THREE.Group();
+  const earth = new THREE.Mesh(
+    new THREE.SphereGeometry(r, 192, 192),
+    new THREE.MeshPhongMaterial({ map, bumpMap: bump, bumpScale: 6, specularMap: spec, specular: new THREE.Color(0x4a5a66), shininess: 22 })
+  );
+  g.add(earth);
+  const cl = new THREE.Mesh(new THREE.SphereGeometry(r * 1.012, 160, 160),
+    new THREE.MeshLambertMaterial({ map: clouds, alphaMap: clouds, transparent: true, opacity: 0.55, depthWrite: false }));
+  g.add(cl);
+  // atmosfera (fresnel) azul-clara + franja vermelha no contraluz
+  const atmo = new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false, side: THREE.BackSide, blending: THREE.AdditiveBlending,
+    uniforms: { c1: { value: new THREE.Color(0x4f86d9) }, c2: { value: new THREE.Color(S.rim) } },
+    vertexShader: `varying vec3 vN; varying vec3 vP; void main(){ vN = normalize(normalMatrix*normal); vec4 mv = modelViewMatrix*vec4(position,1.); vP = mv.xyz; gl_Position = projectionMatrix*mv; }`,
+    fragmentShader: `uniform vec3 c1; uniform vec3 c2; varying vec3 vN; varying vec3 vP;
+      void main(){ float f = pow(0.68 - dot(vN, vec3(0.,0.,1.)), 4.0); vec3 col = mix(c1, c2, smoothstep(-0.2, 0.6, vN.x)); gl_FragColor = vec4(col, 1.0) * f * 1.1; }`,
+  });
+  g.add(new THREE.Mesh(new THREE.SphereGeometry(r * 1.07, 96, 96), atmo));
+  // orientar para mostrar a Europa / Portugal à frente
+  earth.rotation.y = -deg(S.lon) - Math.PI / 2; cl.rotation.y = earth.rotation.y + 0.4;
+  window.__globe = { earth, cl };
+  g.rotation.x = deg(S.lat) * 0.55;
+  return g;
+}
+
+// ---------- AVIÃO (branco brilhante, cauda Vermelho-Self) ----------
+function makePlane(scale = 1) {
+  const white = new THREE.MeshPhysicalMaterial({ color: 0xf4f6f8, metalness: 0.15, roughness: 0.28, clearcoat: 1, clearcoatRoughness: 0.08 });
+  const grey = new THREE.MeshPhysicalMaterial({ color: 0xc9d0d6, metalness: 0.6, roughness: 0.35, clearcoat: 0.6 });
+  const red = new THREE.MeshPhysicalMaterial({ color: 0x9d0b0e, metalness: 0.2, roughness: 0.3, clearcoat: 1, clearcoatRoughness: 0.1 });
+  const dark = new THREE.MeshStandardMaterial({ color: 0x0d1820, metalness: 0.4, roughness: 0.25 });
+  const g = new THREE.Group();
+
+  // fuselagem (lathe de um perfil: nariz arredondado → corpo → cauda afilada), eixo = X
+  const pts = [];
+  const L = 4.2, R = 0.32;
+  for (let i = 0; i <= 60; i++) {
+    const t = i / 60, x = t * L;
+    let r;
+    if (t < 0.1) r = R * Math.sqrt(1 - Math.pow(1 - t / 0.1, 2));           // nariz
+    else if (t < 0.72) r = R;                                              // corpo
+    else r = R * (1 - 0.82 * Math.pow((t - 0.72) / 0.28, 1.4));            // cauda
+    pts.push(new THREE.Vector2(Math.max(r, 0.001), x));
+  }
+  const fus = new THREE.Mesh(new THREE.LatheGeometry(pts, 96), white);
+  fus.rotation.z = -Math.PI / 2; fus.position.x = -L / 2;
+  g.add(fus);
+  // faixa vermelha da marca ao longo da fuselagem
+  const stripe = new THREE.Mesh(new THREE.CylinderGeometry(R * 1.004, R * 1.004, L * 0.55, 96, 1, true, Math.PI * 0.62, Math.PI * 0.16), red);
+  stripe.rotation.z = Math.PI / 2; stripe.position.x = -0.05; g.add(stripe);
+  // janelas
+  const winGeo = new THREE.SphereGeometry(0.028, 12, 12);
+  for (let i = 0; i < 22; i++) {
+    const w = new THREE.Mesh(winGeo, dark);
+    w.position.set(-1.35 + i * 0.105, 0.09, R * 0.985); w.scale.set(1, 1.35, 0.4); g.add(w);
+  }
+  const cock = new THREE.Mesh(new THREE.SphereGeometry(0.16, 24, 24, 0, Math.PI, 0, Math.PI / 2), dark);
+  cock.position.set(-1.83, 0.1, 0); cock.rotation.set(0, Math.PI / 2, -0.35); cock.scale.set(1, 0.45, 1.1); g.add(cock);
+
+  // asas (forma enflechada extrudida)
+  const wing = (span, root, tip, sweep, th) => {
+    const s = new THREE.Shape();
+    s.moveTo(0, 0); s.lineTo(sweep, span); s.lineTo(sweep + tip, span); s.lineTo(root, 0); s.lineTo(0, 0);
+    return new THREE.ExtrudeGeometry(s, { depth: th, bevelEnabled: true, bevelThickness: th * 0.45, bevelSize: th * 0.45, bevelSegments: 4, steps: 1 });
+  };
+  for (const side of [1, -1]) {
+    const w = new THREE.Mesh(wing(2.1, 0.95, 0.28, 0.95, 0.03), white);
+    w.rotation.x = side * Math.PI / 2; w.position.set(-0.55, -0.12, 0); w.rotation.z = 0;
+    w.scale.y = side; w.rotation.y = side * deg(-4);
+    g.add(w);
+    // motor
+    const eng = new THREE.Group();
+    const nac = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.12, 0.62, 48), grey); nac.rotation.z = Math.PI / 2; eng.add(nac);
+    const intake = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.025, 16, 48), red); intake.rotation.y = Math.PI / 2; intake.position.x = -0.31; eng.add(intake);
+    const fan = new THREE.Mesh(new THREE.CircleGeometry(0.13, 32), dark); fan.rotation.y = -Math.PI / 2; fan.position.x = -0.3; eng.add(fan);
+    eng.position.set(-0.05, -0.33, side * 0.9); g.add(eng);
+    // estabilizadores horizontais
+    const hs = new THREE.Mesh(wing(0.75, 0.48, 0.18, 0.42, 0.02), white);
+    hs.rotation.x = side * Math.PI / 2; hs.scale.y = side; hs.position.set(1.62, 0.05, 0); g.add(hs);
+  }
+  // deriva (cauda vertical) em Vermelho-Self
+  const fin = new THREE.Mesh(wing(0.72, 0.7, 0.26, 0.55, 0.025), red);
+  fin.position.set(1.32, 0.12, -0.012); g.add(fin);
+
+  g.scale.setScalar(scale);
+  return g;
+}
+
+// ---------- materiais da marca ----------
+const MATS = {
+  red: () => new THREE.MeshPhysicalMaterial({ color: 0x8c070b, metalness: 0.05, roughness: 0.18, clearcoat: 1, clearcoatRoughness: 0.05, sheen: 0.3 }),
+  chrome: () => new THREE.MeshPhysicalMaterial({ color: 0xdfe5ea, metalness: 1, roughness: 0.12, clearcoat: 1 }),
+  white: () => new THREE.MeshPhysicalMaterial({ color: 0xf6f7f8, metalness: 0, roughness: 0.25, clearcoat: 1, clearcoatRoughness: 0.08 }),
+};
+const extrude = (shape, depth = 0.45, bevel = 0.09) => {
+  const g = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel, bevelSegments: 12, curveSegments: 48 });
+  g.center(); return g;
+};
+// ✕ arredondado (duas barras com cantos redondos)
+function makeX() {
+  const bar = (w, h, r) => { const s = new THREE.Shape(); s.moveTo(-w/2 + r, -h/2); s.lineTo(w/2 - r, -h/2); s.quadraticCurveTo(w/2, -h/2, w/2, -h/2 + r);
+    s.lineTo(w/2, h/2 - r); s.quadraticCurveTo(w/2, h/2, w/2 - r, h/2); s.lineTo(-w/2 + r, h/2); s.quadraticCurveTo(-w/2, h/2, -w/2, h/2 - r);
+    s.lineTo(-w/2, -h/2 + r); s.quadraticCurveTo(-w/2, -h/2, -w/2 + r, -h/2); return s; };
+  const g = new THREE.Group(); const m = MATS[S.material || "red"]();
+  for (const a of [45, -45]) { const b = new THREE.Mesh(extrude(bar(3.2, 0.78, 0.39)), m); b.rotation.z = deg(a); g.add(b); }
+  return g;
+}
+function makeCheck() {
+  const s = new THREE.Shape(); const t = 0.8;
+  s.moveTo(-1.5, 0.1); s.lineTo(-0.5, -0.9); s.lineTo(1.6, 1.2); s.lineTo(1.6 - t * 0.7, 1.2 + t * 0.7 - 0.0001);
+  s.lineTo(-0.5, -0.9 + t * 1.0); s.lineTo(-1.5 + t * 0.7, 0.1 + t * 0.7); s.lineTo(-1.5, 0.1);
+  return new THREE.Mesh(extrude(s, 0.5, 0.12), MATS[S.material || "white"]());
+}
+async function makeText() {
+  const json = await new Promise((res) => new TTFLoader().load("/brand/fonts/thunder/Thunder-BlackLC.ttf", res));
+  const font = new Font(json);
+  const geo = new TextGeometry(String(S.text || "18"), { font, size: 2.4, depth: 0.55, curveSegments: 24, bevelEnabled: true, bevelThickness: 0.08, bevelSize: 0.05, bevelSegments: 10 });
+  geo.center();
+  return new THREE.Mesh(geo, MATS[S.material || "red"]());
+}
+
+// ---------- montagem ----------
+const root = new THREE.Group(); scene.add(root);
+if (S.object === "globe") root.add(await makeGlobe(1.55));
+if (S.object === "plane") { const p = makePlane(0.95); p.rotation.set(deg(-12), deg(-125), deg(-22)); root.add(p); }
+if (S.object === "x") { const x = makeX(); x.rotation.set(deg(-18), deg(28), deg(6)); root.add(x); }
+if (S.object === "check") { const c = makeCheck(); c.rotation.set(deg(-14), deg(-24), deg(-4)); root.add(c); }
+if (S.object === "text") { const t = await makeText(); t.rotation.set(deg(-10), deg(-22), deg(4)); root.add(t); }
+if (S.object === "globe-plane") {
+  const glob = await makeGlobe(1.2); glob.position.set(0.15, -0.35, -0.6); root.add(glob);
+  const p = makePlane(0.62); p.rotation.set(deg(18), deg(-28), deg(24)); p.position.set(-0.1, 0.25, 1.2); root.add(p);
+}
+root.rotation.set(deg(S.pitch), deg(S.yaw), deg(S.roll));
+
+renderer.render(scene, camera);
+// rotação para sequências animadas (render-3d --spin): roda o globo para a longitude pedida e volta a renderizar
+window.__renderAt = (lon) => {
+  if (window.__globe) { window.__globe.earth.rotation.y = -deg(lon) - Math.PI / 2; window.__globe.cl.rotation.y = window.__globe.earth.rotation.y + 0.4 + deg(lon) * 0.15; }
+  renderer.render(scene, camera);
+};
+window.__DONE__ = true;
+</script>
+</body>
+</html>

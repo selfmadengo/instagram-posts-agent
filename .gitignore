@@ -8,3 +8,6 @@ brand/fonts/thunder/*
 !brand/fonts/thunder/.gitkeep
 brand/fonts/euclid-square/*
 !brand/fonts/euclid-square/.gitkeep
+
+# sequências 3D animadas (regeneráveis com scripts/render-3d.mjs --spin)
+assets/3d/*-spin/

@@ -9,6 +9,8 @@
  *   slide.duration (s)  OU  automática = max(2.5, palavras × 0.3 + 1.2)  (regra: ler 2×)
  *   a última cena (CTA) fica ≥ 3 s parada no fim.
  * Transição entre cenas: crossfade de 0.4 s (xfade). Áudio opcional: meta.audio (caminho).
+ *   node scripts/render-video.mjs posts/<pasta> --slides 1,8   # carrossel misto: só estes slides,
+ *                                                              # cada um → export/slide-01.mp4 (3:4), sem junção
  * Requer ffmpeg no PATH.
  */
 import { chromium } from "playwright";
@@ -23,9 +25,12 @@ const dir = args.find((a) => !a.startsWith("--"));
 if (!dir) { console.error("Uso: node scripts/render-video.mjs <pasta-do-post> [--fps 30]"); process.exit(1); }
 const FPS = args.includes("--fps") ? Number(args[args.indexOf("--fps") + 1]) : 30;
 const XF = 0.4; // crossfade (s)
+const ONLY = args.includes("--slides") ? args[args.indexOf("--slides") + 1].split(",").map((n) => Number(n) - 1) : null;
 
 const postDir = resolve(dir);
 const post = JSON.parse(readFileSync(join(postDir, "post.json"), "utf8"));
+// no vídeo, um slide pode trocar o visual estático por uma versão animada (campo "motion")
+for (const s of post.slides) if (s.motion) s.visual = s.motion;
 const vertical = ["story", "reel"].includes(post.meta?.format);
 const W = 1080, H = vertical ? 1920 : 1440;
 const out = join(postDir, "export");
@@ -45,6 +50,7 @@ const tpl = pathToFileURL(join(ROOT, "templates/carousel/carousel.html")).href;
 const clips = [];
 
 for (let i = 0; i < post.slides.length; i++) {
+  if (ONLY && !ONLY.includes(i)) continue;
   const page = await browser.newPage({ viewport: { width: W, height: H } });
   await page.addInitScript(({ post, i, root }) => {
     window.__POST__ = post; window.__SLIDE__ = i; window.__ROOT__ = root; window.__ANIM__ = true;
@@ -60,7 +66,7 @@ for (let i = 0; i < post.slides.length; i++) {
   const frames = Math.round(durations[i] * FPS);
   for (let f = 0; f < frames; f++) {
     const t = (f / FPS) * 1000;
-    await page.evaluate((t) => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t; }), t);
+    await page.evaluate((t) => { window.__setTime?.(t); document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t; }); }, t);
     const buf = await page.screenshot({ type: "jpeg", quality: 95, clip: { x: 0, y: 0, width: W, height: H } });
     if (!ff.stdin.write(buf)) await new Promise((r) => ff.stdin.once("drain", r));
   }
@@ -72,6 +78,18 @@ for (let i = 0; i < post.slides.length; i++) {
 }
 await browser.close();
 
+// carrossel misto: cada slide animado fica num MP4 próprio (o Instagram aceita vídeo dentro do carrossel)
+if (ONLY) {
+  const { renameSync } = await import("node:fs");
+  for (const c of clips) {
+    const i = Number(c.match(/scene-(\d+)/)[1]);
+    const dest = join(out, `slide-${String(i + 1).padStart(2, "0")}.mp4`);
+    execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", c, "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18", "-movflags", "+faststart", dest]);
+    console.log("✓", dest.replace(ROOT + "/", ""));
+  }
+  rmSync(tmp, { recursive: true, force: true });
+  process.exit(0);
+}
 // junta as cenas com crossfade
 const final = join(out, post.meta?.output || "video.mp4");
 const inputs = clips.flatMap((c) => ["-i", c]);

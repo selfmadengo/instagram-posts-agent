@@ -85,8 +85,19 @@
 
   const visual = (v) => {
     if (!v) return "";
-    const st = `width:${v.width || 860}px;bottom:${v.bottom ?? 120}px;${v.left != null ? `left:${v.left}px;transform:none;` : ""}`;
-    if (v.type === "image") return `<div class="hero-visual ${v.float ? "float" : ""}" style="${st}"><img src="${asset(v.src)}" alt=""></div>${v.fade !== false ? '<div class="hero-fade"></div>' : ""}`;
+    const pos = `width:${v.width || 860}px;bottom:${v.bottom ?? 120}px;${v.left != null ? `left:${v.left}px;transform:rotate(${v.rotate || 0}deg);` : `transform:translateX(-50%) rotate(${v.rotate || 0}deg);`}`;
+    const cls = `hero-visual ${v.front ? "front" : ""} ${v.float ? "float" : ""} ${v.rise ? "pop-in" : ""}`;
+    const fade = v.fade ? '<div class="hero-fade"></div>' : "";
+    if (v.type === "image") return `<div class="${cls}" style="${pos}"><img src="${asset(v.src)}" alt=""></div>${fade}`;
+    if (v.type === "sequence") {
+      // frames de uma animação 3D (render-3d --spin); o render-video escolhe o frame com window.__setTime(t)
+      const imgs = Array.from({ length: v.count }, (_, k) => `<img data-k="${k}" src="${asset(`${v.dir}/frame-${String(k).padStart(3, "0")}.png`)}" alt="" style="${k ? "display:none" : ""}">`).join("");
+      window.__setTime = (t) => {
+        const k = Math.min(v.count - 1, Math.floor((t / ((v.duration || 5) * 1000)) * v.count));
+        document.querySelectorAll(".hero-visual img[data-k]").forEach((im) => (im.style.display = Number(im.dataset.k) === k ? "" : "none"));
+      };
+      return `<div class="${cls} seq" style="${pos}">${imgs}</div>${fade}`;
+    }
     if (v.type === "orb") {
       const size = v.size || 620;
       return `<div class="brand-orb pop" style="width:${size}px;height:${size}px;left:${v.left ?? (W - size) / 2}px;bottom:${v.bottom ?? -size * 0.28}px;--d:250ms"><img src="${asset("brand/logos/selfmade-icon-white.png")}" alt=""></div>`;
@@ -178,7 +189,7 @@
 
   const bg = s.background ? `<div class="bg-image"><img src="${asset(s.background)}" alt=""></div>` : "";
   document.getElementById("stage").innerHTML = `
-    <section class="slide theme-${theme} l-${s.layout || "statement"} ${isVertical ? "vertical" : ""} ${window.__ANIM__ ? "anim" : ""}">
+    <section class="slide theme-${theme} l-${s.layout || "statement"} ${s.align === "center" ? "center" : ""} ${s.valign === "top" ? "top" : ""} ${s.visual ? "has-visual" : ""} ${isVertical ? "vertical" : ""} ${window.__ANIM__ ? "anim" : ""}">
       ${bg}<div class="motif-orbit"></div>
       ${visual(s.visual)}
       <div class="frame">${body}</div>

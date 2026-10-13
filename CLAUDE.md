@@ -52,6 +52,8 @@ Conta: **@selfmade_ngo**.
 5. Depois de criado, partilha o link do design e regista-o em `posts/<pasta>/canva.md`.
 
 ## Ferramentas disponíveis
+- **Objetos 3D realistas gerados aqui**: `node scripts/render-3d.mjs <globe|x|check|text> assets/3d/<nome>.png` (three.js + texturas NASA; `--text 18`, `--material red|chrome|white`, `--spin 60 --spinDeg 36` para sequência animada do globo). São o "herói" de cada slide, estilo @marketingharry / KingUp: objeto gigante, por baixo/à frente do título, a sobrepô-lo ligeiramente.
+- **Carrossel misto**: slides com campo `motion` → `node scripts/render-video.mjs posts/<pasta> --slides 1,8` gera `export/slide-01.mp4` (3:4).
 - Playwright + Chromium (render HTML→PNG), ffmpeg (MP4), Pillow.
 - **Canva AI** (`mcp__Canva__generate-image`) para gerar objetos 3D realistas — ver `docs/prompts-3d.md`. Nota: o download a partir de canva.com depende de o domínio estar autorizado na rede do ambiente.
 - **Google Drive** (pasta "Branding Selfmade") para logos/fontes novos.
